@@ -1,7 +1,7 @@
-.hidden {
+.tab__book__display__none {
   display: none;
 }
 
-.tab__item__display {
-  display: none;
+.show {
+  display: block;
 }
