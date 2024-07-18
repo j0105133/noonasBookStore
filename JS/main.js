@@ -9,6 +9,7 @@ let tabBtn = document.querySelectorAll('.tab__item');
 // 메뉴별 화면 변경 함수
 window.onload = function(){
   let menu = document.querySelectorAll('.nav__menu__item');
+  console.log(menu[0]);
   console.log(menu);
 
   for (let i = 0; i < menu.length; i++){
