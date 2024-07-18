@@ -9,7 +9,6 @@ let tabBtn = document.querySelectorAll('.tab__item');
 // 메뉴별 화면 변경 함수
 window.onload = function(){
   let menu = document.querySelectorAll('.nav__menu__item');
-  console.log(menu);
 
   for (let i = 0; i < menu.length; i++){
     $('.nav__menu__item').eq(i).on('click', function(){
@@ -94,6 +93,7 @@ function menuBook (menu){
 // 메뉴별 화면 render 함수
 function categoryBookRender(event){
   let menuCategory = event.target.textContent;
+  console.log("확인");
   //console.log(category);
   if (menuCategory == "국내도서"){
     getBookData();
