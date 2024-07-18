@@ -1,0 +1,34 @@
+.book__detail > h2{
+  margin-bottom: 40px;
+}
+
+.detail__wrap{
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+.detail__img {
+  flex: 1;
+}
+.detail__img img{
+  width: 100%;
+}
+.detail__text{
+  flex: 3;
+  font-size: 22px;
+}
+.detail__text p {
+  margin-bottom: 30px;
+}
+.detail__text p:nth-child(1) em{
+  font-family: var(--font_pretendard);
+  font-weight: 400;
+  font-size: 42px;
+  font-style: normal;
+}
+
+.detail__text p:nth-child(2) em{
+  font-family: var(--font_pretendard);
+  font-weight: 200;
+  font-style: normal;
+}
