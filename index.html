@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="CSS/search.css">
     <!-- <link rel="stylesheet" href="CSS/slick.css">  -->
     <link rel="stylesheet" href="CSS/style.css"> 
-    <title>noonaBookStore</title>    
+    <title>noonaBookStore</title>   
+    
 </head>
 <body>
     <!--header : common/hearder.html-->
@@ -27,6 +28,14 @@
     <!--//nav--> 
     <!--container-->
     <section class="container wrap">
+        <div class="search-form">
+            <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
+            <button id="customSearchBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
+                </svg>
+            </button>
+        </div>
         <!--bookList-->
         <h2>주목할만한 신간</h2>
         <article class="book__container">
@@ -196,7 +205,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="/JS/search.js"></script>
     <script src="/JS/common.js"></script>
-    <script src="/JS/detail.js"></script>
+    <!-- <script src="/JS/detail.js"></script> -->
     <script src="/JS/main.js"></script>
     <script src="/JS/main2.js"></script>
     <script src="/JS/product.js"></script>
@@ -204,3 +213,27 @@
     
 </body>
 </html>
+
+<script>
+    $(document).ready(function() {
+        // 검색 버튼 클릭 이벤트
+        $('#customSearchBtn').click(function() {
+            searchBooks();
+        });
+    
+        // Enter 키 이벤트
+        $('#customTextInput').keypress(function(event) {
+            if (event.key === "Enter") {
+                searchBooks();
+            }
+        });
+    
+        // 검색 함수
+        function searchBooks() {
+            const inputValue = $('#customTextInput').val();
+            const newUrl = `search.html?query=${encodeURIComponent(inputValue)}`;
+            window.location.href = newUrl;
+            $('#customTextInput').val(''); // 입력 필드 비우기
+        }
+    });
+    </script>
