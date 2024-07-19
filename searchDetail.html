@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>책 상세 정보</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .detail__container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .book__detail {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box; /* ensure padding is included in width */
+            overflow: hidden;
+        }
+        .book__detail img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .book__detail h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .book__detail p {
+            margin: 5px 0;
+            font-size: 16px;
+            word-break: break-all; /* ensure long words break properly */
+        }
+        .book__detail p strong {
+            font-weight: bold;
+        }
+        .book__detail div {
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!--header : common/header.html-->
+    <header class="header" id="header"></header>
+    <!--//header-->
+    <!--nav : common/nav.html-->
+    <nav id="nav"></nav>
+    <!--//nav-->
+    <!--container-->
+    <section class="detail__container wrap">
+        <article class="book__detail mgT40">
+            <h2 id="bookTitle"></h2>
+            <div id="bookInfo"></div>
+
+            <script>
+              $(document).ready(function() {
+                // URL에서 isbn 파라미터 추출
+                const urlParams = new URLSearchParams(window.location.search);
+                const isbn = decodeURIComponent(urlParams.get('isbn')); // 디코딩된 ISBN 값 사용
+
+                if (isbn) {
+                  fetchBookDetail(isbn);
+                }
+
+                function fetchBookDetail(isbn) {
+                  $.ajax({
+                    method: "GET",
+                    url: `https://dapi.kakao.com/v3/search/book?target=isbn&query=${isbn}`,
+                    headers: { Authorization: `KakaoAK f4aacc94a442dd1e084f37ce4cad76cb` }
+                  })
+                  .done(function(data) {
+                    if (data.documents && data.documents.length > 0) {
+                      const book = data.documents[0];
+                      displayBookDetail(book);
+                    } else {
+                      $('#bookInfo').html('<p>책 정보를 찾을 수 없습니다.</p>');
+                    }
+                  });
+                }
+
+                function displayBookDetail(book) {
+                  $('#bookTitle').text(book.title);
+                  const bookHTML = `
+                    <img src="${book.thumbnail}" alt="${book.title}">
+                    <div>
+                      <p><strong>저자:</strong> ${book.authors.join(', ')}</p>
+                      <p><strong>출판사:</strong> ${book.publisher}</p>
+                      <p><strong>가격:</strong> ${book.price}원</p>
+                      <p><strong>설명:</strong> ${book.contents}</p> <!-- 전체 설명 표시 -->
+                    </div>
+                  `;
+                  $('#bookInfo').html(bookHTML);
+                }
+              });
+            </script>
+        </article>
+    </section>
+    <!--//container-->
+    <footer id="footer"></footer>
+</body>
+</html>
