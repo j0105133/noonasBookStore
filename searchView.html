@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/JS/slick.js"></script>
+    <link rel="stylesheet" href="CSS/detail.css" />
+    <link rel="stylesheet" href="CSS/main.css" />
+    <link rel="stylesheet" href="CSS/product.css" />
+    <link rel="stylesheet" href="CSS/reset.css" />
+    <link rel="stylesheet" href="CSS/search.css" />
+    <link rel="stylesheet" href="CSS/slick.css" />
+    <link rel="stylesheet" href="CSS/style.css" />
+    <title>noonaBookStore</title>
+  </head>
+  <body>
+    <!--header : common/hearder.html-->
+    <header class="header" id="header"></header>
+    <!--//header-->
+    <!--nav : common/nav.html-->
+    <nav id="nav"></nav>
+    <!--//nav-->
+    <!--container-->
+    <section class="container product__container wrap">
+      <article class="book__detail mgT40">
+        <h2>도서 상세 정보</h2>
+        <div id="detail-board">
+          <div class="detail__wrap">
+            <div class="detail__img">
+              <img id="detail-img">
+            </div>
+            <div class="detail__text">
+              <p><!-- 카테고리 --> <em id="detail-info-cate"></em></p>
+              <p class="detail__book__title"><!-- 제목 --> <em id="detail-info-title"></em></p>
+              <p>저자 <em id="detail-info-author"></em></p>
+              <p>쪽수 <em id="detail-info-page"></em></p>
+              <p>원제 <em id="detail-info-otitle"></em></p>
+              <p>출판사 <em id="detail-info-pub"></em></p>
+              <p>ISBN <em id="detail-info-isbn"></em></p>
+            </div>
+          </div>
+          <div class="detail__descr">
+            <h3>줄거리</h3>
+            <p id="detail-book-desc"></p>
+          </div>
+        </div>
+      </article>
+    </section>
+    <!--//container-->
+    <footer id="footer"></footer>
+    <script src="/JS/search.js"></script>
+    <script src="/JS/common.js"></script>
+    <script src="/JS/detail.js"></script>
+    <script src="/JS/main.js"></script>
+    <script src="/JS/product.js"></script>
+  </body>
+</html>
