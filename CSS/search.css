@@ -2,58 +2,24 @@ body {
     font-family: Arial, sans-serif;
 }
 
-#customSearchForm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#searchForm {
     margin: 20px;
-    background-color: #f9f9f9;
-    border-radius: 25px;
-    padding: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto; /* 중앙 정렬 */
+    text-align: center;
 }
 
-#customTextInput {
-    width: 100%;
-    padding: 12px 20px;
+#query {
+    width: 300px;
+    padding: 10px;
     font-size: 16px;
-    border: none;
-    border-radius: 25px 0 0 25px;
-    outline: none;
-    box-sizing: border-box;
-    background-color: #fff;
 }
 
-#customSearchBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 15px;
+button {
+    padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 0 25px 25px 0;
-    outline: none;
-    box-sizing: border-box;
-    height: 42px; /* 버튼 높이를 입력 필드와 동일하게 조정 */
-    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-#customSearchBtn:hover {
-    background-color: #0056b3;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#customSearchBtn svg {
-    fill: white; /* 아이콘 색상을 흰색으로 설정 */
-}
-
-#customBookBoard {
+#results {
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -61,65 +27,55 @@ body {
     width: 100%;
 }
 
-.customBook {
+.book {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin: 10px 0;
+    margin: 10px 20px; /* 위아래 간격을 반으로 줄임 */
     border: 1px solid #ddd;
     padding: 20px;
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     cursor: pointer;
     box-sizing: border-box;
-    transition: border-color 0.3s;
-    background-color: #fff;
 }
 
-.customBook img {
-    width: 100px;
-    height: 150px;
+.book img {
+    width: 200px; /* 고정된 너비 */
+    height: 300px; /* 고정된 높이 */
     margin-right: 20px;
-    object-fit: cover;
-    border-radius: 5px;
+    object-fit: cover; /* 이미지가 고정된 크기에 맞게 조정됨 */
 }
 
-.customBookInfo {
+.book-info {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-grow: 1;
+    margin-left: 20px; /* 글을 왼쪽으로 옮기기 위해 여백 추가 */
 }
 
-.customBook h4 {
+.book h3 {
     font-size: 18px;
     margin: 0;
-    font-weight: bold;
 }
 
-.customBook p {
+.book p {
     font-size: 14px;
     margin: 5px 0;
 }
 
-.customBook div {
-    font-size: 12px;
-    margin: 2px 0;
-}
-
-.customBook:hover {
+.book:hover {
     border-color: #007bff;
-    background-color: #f0f8ff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.customPagination {
+.pagination {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.customPagination a {
+.pagination button {
     padding: 10px 15px;
     margin: 0 5px;
     border: 1px solid #007bff;
@@ -128,32 +84,27 @@ body {
     cursor: pointer;
     border-radius: 20px;
     font-size: 14px;
-    text-decoration: none;
 }
 
-.customPagination a.active {
-    background-color: rgb(94, 154, 239);
-}
-
-.customPagination a.disabled {
-    visibility: hidden;
-}
-
-.customPagination a:hover {
+.pagination button.active {
     background-color: #0056b3;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .customBook {
-        flex-direction: column;
-        align-items: center;
-    }
+.pagination button:hover {
+    background-color: #0056b3;
+}
 
-    .customBook img {
-        width: 80px;
-        height: 120px;
-        margin-right: 0;
-        margin-bottom: 10px;
+/* 반응형 이미지 크기 조정 */
+@media (max-width: 768px) {
+    .book img {
+        width: 150px; /* 작은 화면에서는 이미지 크기를 줄임 */
+        height: 225px;
+    }
+}
+
+@media (max-width: 480px) {
+    .book img {
+        width: 120px; /* 더 작은 화면에서는 이미지 크기를 더 줄임 */
+        height: 180px;
     }
 }

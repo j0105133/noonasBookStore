@@ -16,6 +16,10 @@
         .hidden {
             display: none !important;
         }
+        .customBook.expanded {
+            height: auto;
+            white-space: normal;
+        }
     </style>
 </head>
 <body>
@@ -108,18 +112,28 @@
                     const isbnArray = book.isbn.split(' ');
                     const isbn13 = isbnArray.find(isbn => isbn.length === 13);
                     return `
-                    <div class="customBook" onclick="goToDetail('${encodeURIComponent(isbn13)}')"> <!-- 책을 클릭하면 goToDetail 함수 호출 -->
+                    <div class="customBook" data-isbn="${isbn13}"> <!-- 책을 클릭하면 박스가 확장되도록 -->
                       <img src="${book.thumbnail}">
                       <div class="customBookInfo">
                         <a href="javascript:void(0);"><h4>${book.title}</h4></a>
                         <p>${book.contents.length > 100 ? book.contents.substring(0, 100) + "..." : book.contents}</p>
-                        <div>저자: ${book.authors.join(', ')}</div>
-                        <div>출판사: ${book.publisher}</div>
-                        <div>가격: ${book.price}원</div>
+                        <div class="fullDetails hidden">
+                          <div>저자: ${book.authors.join(', ')}</div>
+                          <div>출판사: ${book.publisher}</div>
+                          <div>가격: ${book.price}원</div>
+                          <div>${book.contents}</div>
+                          <button onclick="window.location.href='${book.url}'">상세보기</button>
+                        </div>
                       </div>
                     </div>`;
                   }).join('');
                   document.getElementById('customBookBoard').innerHTML = bookHTML;
+
+                  // Click event for expanding book details
+                  $('.customBook').click(function() {
+                    $(this).toggleClass('expanded');
+                    $(this).find('.fullDetails').toggleClass('hidden');
+                  });
                 }
 
                 function setupPagination(totalBooks, currentPage) {
