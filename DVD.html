@@ -102,5 +102,10 @@
             window.location.href = newUrl;
             $('#customTextInput').val(''); // 입력 필드 비우기
         }
+
+        // 상세 페이지로 이동하는 함수
+        window.goToDetail2 = function(isbn) { 
+        window.location.href = `view.html?isbn=${isbn}`;
+        };
     });
     </script>

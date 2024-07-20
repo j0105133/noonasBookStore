@@ -1,4 +1,4 @@
-const API_KEY_DVD = `ttbsueyesi2317002`
+// const API_KEY_DVD = `ttb02jw2356002`
 let queryType = "";
 let dvdCallback = "";
 let searchTarget= ""
@@ -10,7 +10,7 @@ const getDvdData = () => {
     let queryType = "ItemNewAll";
     let dvdCallback = "dvdDisplay";
     let searchTarget= "DVD";
-    let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY_DVD}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
+    let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
 
     // AJAX 요청
     $.ajax({
@@ -23,7 +23,7 @@ const getBestDvdData = () => {
     let queryType = "ItemNewSpecial";
     let dvdCallback = "bestDvdDisplay";
     let searchTarget= "DVD";
-    let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY_DVD}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
+    let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
 
     // AJAX 요청
     $.ajax({
@@ -47,8 +47,9 @@ const bestDvdDisplay =(success)=>{
 
 const DVDRender =()=>{
     let dvdListHTML = ``;
+    // console.log("dvd list", allDvdList);
     dvdListHTML = allDvdList.map(dvd => `
-        <div class="dvd__item">
+        <div class="dvd__item" onclick="goToDetail2('${dvd.isbn13}')">
             <div class="dvd__img"><img class="bookImgSize" src=${dvd.cover} /></div>
             <dl class="dvd__text">
                 <dt>${dvd.title}</dt>
@@ -58,7 +59,7 @@ const DVDRender =()=>{
             </dl>
         </div>        
       `).join('');
-
+    // console.log("dvd isbn", allDvdList.isbn);
     document.getElementById('dvd__list').innerHTML = dvdListHTML;
 }
 const bestDvdRender =()=>{
@@ -66,7 +67,7 @@ const bestDvdRender =()=>{
     let itemsPerPage = 5;
     
     ebookListHTML = ebookList.slice(0, itemsPerPage).map(dvd => `
-        <div class="dvd__item">
+        <div class="dvd__item" onclick="goToDetail2('${dvd.isbn13}')">
             <div class="dvd__img"><img class="bookImgSize" src=${dvd.cover} /></div>
             <dl class="dvd__text">
                 <dt>${dvd.title}</dt>

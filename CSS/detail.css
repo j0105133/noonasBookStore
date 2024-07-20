@@ -58,6 +58,7 @@
 
 .detail__buy a{
   display: inline-block;
+  margin-left: 8px;
   flex:1;
   margin-top: 24px;
   color : #fff;
@@ -68,11 +69,14 @@
 }
 
 .detail__buy a:nth-child(1){
-  background-color: rgb(241, 107, 159);
+  background-color: #FF6828;
 }
 .detail__buy a:nth-child(2){
-  background-color: rgb(16, 14, 126);
+  background-color: rgb(241, 107, 159);
 }
 .detail__buy a:nth-child(3){
+  background-color: rgb(16, 14, 126);
+}
+.detail__buy a:nth-child(4){
   background-color: rgb(241, 149, 107);
 }

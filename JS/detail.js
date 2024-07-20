@@ -1,4 +1,4 @@
-const DW_API_KEY = 'ttbsueyesi2317002';
+const DW_API_KEY = 'ttb02jw2356002';
 let bookInfo = [];
 let receivedISBN = '';
 
@@ -38,6 +38,7 @@ function getDetailBookData() {
         jsonp: "detailBookDisplay",
         dataType: "jsonp"
     });
+
 }
 
 // 콜백 함수
@@ -53,7 +54,17 @@ function detailBookDisplay(success) {
 
 // 책 세부 정보를 렌더링하는 함수
 function detailRender() {
+  const referrer = document.referrer;
+  // 이전 페이지가 DVD.html인지 확인
+  console.log(referrer, "ref");
+  if (referrer.includes('dvd.html')) {
+      // 버튼 숨기기
+      console.log("refdvdin")
+      document.getElementById('detail-book-buy-btn-kakao').style.display = 'none';
+      document.getElementById('detail-desc').style.display = 'none';
+  }
     if (bookInfo.length === 0) {
+      console.log(bookInfo.length);
         $('#bookInfo').html('<p>책 정보를 로드할 수 없습니다.</p>');
         return;
     }
@@ -83,11 +94,13 @@ function detailRender() {
     document.getElementById('detail-info-isbn').textContent = detailISBN;
 
     let detailDate = bookInfo[0].isbn;
-    document.getElementById('detail-info-isbn').textContent = detailISBN;
+    document.getElementById('detail-info-isbn').textContent = detailDate;
 
     let detailBookDesc = bookInfo[0].description;
     document.getElementById('detail-book-desc').textContent = detailBookDesc;
 
+    let detailBookBuyBtnKaKao = `https://search.daum.net/search?w=bookpage&bookId=6368962&q=${detailBookTitle}`
+    document.getElementById('detail-book-buy-btn-kakao').setAttribute('herf', detailBookBuyBtnKaKao)
     let detailBookBuyBtnA = bookInfo[0].link;
     document.getElementById('detail-book-buy-btn-aladin').setAttribute('href', detailBookBuyBtnA);
 
@@ -98,3 +111,24 @@ function detailRender() {
     let detailBookBuyBtnY = `https://www.yes24.com/Product/Search?domain=ALL&query=${detailTitleFind}`;
     document.getElementById('detail-book-buy-btn-yes24').setAttribute('href', detailBookBuyBtnY);
 }
+
+        // 검색 버튼 클릭 이벤트
+        $('#customSearchBtn').click(function() {
+            searchBooks();
+        });
+    
+        // Enter 키 이벤트
+        $('#customTextInput').keypress(function(event) {
+            if (event.key === "Enter") {
+                searchBooks();
+            }
+        });
+    
+        // 검색 함수
+        function searchBooks() {
+            const inputValue = $('#customTextInput').val();
+            const newUrl = `search.html?query=${encodeURIComponent(inputValue)}`;
+            window.location.href = newUrl;
+            $('#customTextInput').val(''); // 입력 필드 비우기
+        }
+
