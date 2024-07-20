@@ -1,32 +1,30 @@
 
-
- $(".book_list--roll2").slick({
-     autoplay: true,
-     arrows:true,
-     infinite: true,
-     speed: 500,
-     slidesToShow: 5,
-     slidesToScroll: 1,			
-     autoplaySpeed : 3000,
-     responsive: [ 
-     {  
-       breakpoint: 1500, 
-       settings: {
-         slidesToShow: 5
-       } 
-     },
-     {  
-       breakpoint: 1400, 
-       settings: {
-         slidesToShow: 4
-       } 
-     },
-     { 
-       breakpoint: 980, 
-       settings: {    
-         slidesToShow: 2
-       } 
-     }
-   ] 
-   });  
+//신간
+var swiper = new Swiper(".bookSwiper", {
+  slidesPerView: 1,
+  spaceBetween: 60,
+  loop: true,
+  autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
+  }, 
+  breakpoints: {
+      460: {
+      slidesPerView: 2,
+      spaceBetween: 60,
+      },
+      768: {
+      slidesPerView: 3,
+      spaceBetween: 60,
+      },
+      1024: {
+      slidesPerView: 4,
+      spaceBetween: 60,
+      },
+      1200: {
+        slidesPerView: 5,
+        spaceBetween: 60,
+        },
+  },            
+  }); 
   

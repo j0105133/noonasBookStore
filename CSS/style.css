@@ -54,9 +54,6 @@ body{
 }
 
 /*hearder*/
-header{
-    
-}
 .wrap{
     width: 90%;
     max-width: var(--maxWidth);
@@ -153,31 +150,42 @@ nav .nav__menu div.active{
 .container{
     padding: 50px 0;
 }
+.container h2.title{
+    margin-bottom: 1.5rem;
+}
 /*main book list*/
 .book__container{
     width: 100%;
     height: 100%;
-    padding: 30px 0;
+    padding: 50px;
     border: 1px solid #e5e5e5;
     overflow: hidden;
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
     position: relative;
 }
-.book__container .book_list_roll{
-    width: 90%;
-    overflow: hidden;
-    margin: 0 auto;
-    border: 1px solid #007bff;
+.book__container .book_list--roll{
+     
 }
 .book__container .book__item{
-    width: 20%;
-    cursor: pointer;
+    width: 20%;   
+}
+.book__container .book__img{
+}
+.book__container .book__img img{     
+    max-width: 100%;
+    max-height: 290px;    
+    object-fit: cover;
+    border: 1px solid #ddd; 
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .book__list{ 
     padding: 50px;
     display: flex;
     font-family: var(--font_pretendard);    
     justify-content: space-evenly;    
+}
+.book__item{
+    cursor: pointer;
 }
 .book__img{
     display: block; 
@@ -205,36 +213,8 @@ nav .nav__menu div.active{
     font-size: 0.875rem;
     font-weight: 300;
 }
-/*slick*/
-.slick-slide img{
-    display: inline !important;
-}
-.book__container .book_list_roll .slick-arrow{
-   z-index: 2;
-    position: absolute;
-    top: 50%;
-    width: 50px;
-    height: 50px;
-    transform: translateY(-55px);
-    outline: none;
-    border: 0;
-    font-size: 0;
-    font-family: var(--font_awesome);
-}
-.slick-prev{
-    border: 1px solid #333;
-    right: 0;
-}
-.slick-prev::after{
-    content: "\f054";
-    font-size: 1rem;
-    
-}
-.slick-next{
-    border: 1px solid #333;
-}
 /*theme*/
-.book__theme{}
+
 
 /*갤러리타입*/
 .book__theme--album{
@@ -245,7 +225,44 @@ nav .nav__menu div.active{
     top: 15px; 
 }
 .book__theme--album .book__list{    
-    padding: 50px 0;      
+    padding:0;
+    width: 100%;
+    display: flex;
+    overflow: hidden;    
+}
+.book__theme--album .book__item {
+    width: 25%;
+    padding: 30px 0;    
+    word-break:keep-all;
+    vertical-align: top;
+    border: 5px solid #fff;       
+}
+.book__theme--album .book__item:hover {
+    background: #8ec5fc42;   
+}
+.book__theme--album dl dt,
+.book__theme--album dl dd{
+    width: 90%;
+    margin: 0 auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:1;
+}
+.book__theme--album .book__img{
+    width: 100px;
+    height: 150px;
+    display: block; 
+    margin: 0 auto;
+    text-align: center; 
+}
+.book__theme--album .book__img img{
+    width: 100%;
+    max-width: 100%;
+    max-height: 150px;    
+    object-fit: cover;
+    box-shadow: none;
 }
 /*리스트타입*/
 .book__theme--list{
@@ -260,7 +277,7 @@ nav .nav__menu div.active{
     height: 100%;    
     border-bottom: 1px solid #ddd;
     padding: 2rem 1rem;
-    display: table;
+    display: table;    
 }
 .book__theme--list .theme__list .theme__item .theme__img{
     text-align: left;
@@ -351,4 +368,12 @@ footer{
 /*main book list*/
 .mgT40{
     margin-top: 40px;
+}
+img{
+    image-rendering: -moz-crisp-edges; /* firefox */
+    image-rendering: -o-crisp-edges; /* opera */
+    image-rendering: -webkit-optimize-contrast; /* chrome */
+    image-rendering: crisp-edges;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }

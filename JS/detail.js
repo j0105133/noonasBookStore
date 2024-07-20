@@ -1,4 +1,4 @@
-const DW_API_KEY = 'ttbert93330031001';
+const DW_API_KEY = 'ttbbeatles70107001';
 let bookInfo = [];
 let receivedISBN = '';
 
