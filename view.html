@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="upgrade-insecure-requests"
-    />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="/JS/slick.js"></script>
-    <link rel="stylesheet" href="CSS/detail.css" />
-    <link rel="stylesheet" href="CSS/main.css" />
-    <link rel="stylesheet" href="CSS/product.css" />
-    <link rel="stylesheet" href="CSS/reset.css" />
-    <link rel="stylesheet" href="CSS/search.css" />
-    <link rel="stylesheet" href="CSS/slick.css" />
-    <link rel="stylesheet" href="CSS/style.css" />
-    <title>noonaBookStore</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="CSS/detail.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/product.css"> 
+    <link rel="stylesheet" href="CSS/reset.css"> 
+    <link rel="stylesheet" href="CSS/search.css">
+    <link rel="stylesheet" href="CSS/style.css"> 
+    <title>noonaBookStore</title> 
+</head>
   <body>
     <!--header : common/hearder.html-->
-    <header class="header" id="header"></header>
+    <header class="header" id="header"> 
+      <div class="header__event"></div>        
+      <div class="header__container wrap">            
+          <h1><a href="/">Noona<span>Book</span>Store</a></h1>
+          <!--search-->
+          <div class="search-form">
+            <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
+            <button id="customSearchBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
+                </svg>
+            </button>
+          </div> 
+         <!--//search-->                   
+      </div>      
+    </header> 
     <!--//header-->
     <!--nav : common/nav.html-->
-    <nav id="nav"></nav>
-    <!--//nav-->
+    <nav id="nav">
+      <div class="nav__menu wrap">
+          <div class="nav__menu__item active">국내도서</div>        
+          <div class="nav__menu__item">외국도서</div>        
+          <div class="nav__menu__item">eBook</div>
+          <div><a href="dvd.html">DVD</a></div>
+      </div>
+    </nav>
+    <!--//nav--> 
     <!--container-->
     <section class="container product__container wrap">
       <article class="book__detail mgT40">
@@ -57,9 +68,9 @@
             <p id="detail-book-desc"></p>
           </div>
           <div class="detail__buy">
-            <a id="detail-book-buy-btn-aladin" href="#" class="button">알라딘에서 구매하기</a>
-            <a id="detail-book-buy-btn-kyobo" href="#" class="button">교보문고에서 구매하기</a>
-            <a id="detail-book-buy-btn-yes24" href="#" class="button"">yes24에서 구매하기</button>
+            <a id="detail-book-buy-btn-aladin" href="#" class="button" target="_blank">알라딘에서 구매하기</a>
+            <a id="detail-book-buy-btn-kyobo" href="#" class="button" target="_blank">교보문고에서 구매하기</a>
+            <a id="detail-book-buy-btn-yes24" href="#" class="button" target="_blank">yes24에서 구매하기</a>
           </div>
         </div>
       </article>

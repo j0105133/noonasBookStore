@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <script src="https://code.jquery.com/jquery-latest.min.js"></script> -->
+    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- <script src="/JS/slick.js"></script> -->
     <link rel="stylesheet" href="CSS/detail.css">
@@ -15,85 +15,45 @@
     <link rel="stylesheet" href="CSS/search.css">
     <!-- <link rel="stylesheet" href="CSS/slick.css">  -->
     <link rel="stylesheet" href="CSS/style.css"> 
-    <title>noonaBookStore</title>   
-    
+    <title>noonaBookStore</title> 
 </head>
 <body>
     <!--header : common/hearder.html-->
-    <header class="header" id="header">                    
+    <header class="header" id="header"> 
+        <div class="header__event">Just Code It</div>        
+        <div class="header__container wrap">            
+            <h1><a href="/">Noona<span>Book</span>Store</a></h1>
+            <!--search-->
+            <div class="search-form">
+                <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
+                <button id="customSearchBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
+                    </svg>
+                </button>
+            </div> 
+            <!--//search-->               
+        </div>          
     </header> 
     <!--//header-->
     <!--nav : common/nav.html-->
-    <nav id="nav"></nav>
+    <nav id="nav">
+        <div class="nav__menu wrap">
+            <div class="nav__menu__item active">국내도서</div>        
+            <div class="nav__menu__item">외국도서</div>        
+            <div class="nav__menu__item">eBook</div>
+            <!-- <div><a href="search.html">검색페이지</a></div> -->
+            <div><a href="dvd.html">DVD</a></div>
+            <!-- <div><a href="view.html">상세페이지</a></div> -->
+        </div>
+    </nav>
     <!--//nav--> 
     <!--container-->
-    <section class="container wrap">
-        <div class="search-form">
-            <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
-            <button id="customSearchBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
-                </svg>
-            </button>
-        </div>
+    <section class="container wrap">        
         <!--bookList-->
         <h2>주목할만한 신간</h2>
         <article class="book__container">
-            <div class="book_list--roll" id="book_list--roll">
-            <!--item-->
-            <!-- <div class="book__item ">
-                <span class="book__img"><img class="bookImgSize" src="/images/img1.jpg" /></span>
-                <dl class="book__text">
-                    <dt>긍정의 말들</dt>
-                    <dd>박산호 지음 / 유유</dd>
-                </dl>
-            </div> -->
-            <!--//item-->
-            <!--item-->
-            <!-- <div class="book__item ">
-                <span class="book__img"><img class="bookImgSize" src="/images/img2.jpg" /></span>
-                <dl class="book__text">
-                    <dt>긍정의 말들</dt>
-                    <dd>박산호 지음 / 유유</dd>
-                </dl>
-            </div> -->
-            <!--//item-->
-            <!--item-->
-            <!-- <div class="book__item ">
-                <span class="book__img"><img class="bookImgSize" src="/images/img1.jpg" /></span>
-                <dl class="book__text">
-                    <dt>긍정의 말들</dt>
-                    <dd>박산호 지음 / 유유</dd>
-                </dl>
-            </div> -->
-            <!--//item-->
-            <!--item-->
-            <!-- <div class="book__item ">
-                <span class="book__img"><img class="bookImgSize" src="/images/img1.jpg" /></span>
-                <dl class="book__text">
-                    <dt>긍정의 말들</dt>
-                    <dd>박산호 지음 / 유유</dd>
-                </dl>
-            </div> -->
-            <!--//item-->
-            <!--item-->
-            <!-- <div class="book__item ">
-                <span class="book__img"><img class="bookImgSize" src="/images/img1.jpg" /></span>
-                <dl class="book__text">
-                    <dt>긍정의 말들</dt>
-                    <dd>박산호 지음 / 유유</dd>
-                </dl>
-            </div> -->
-            <!--//item-->
-            <!--item-->
-            <!-- <div class="book__item ">
-                <span class="book__img"><img class="bookImgSize" src="/images/img1.jpg" /></span>
-                <dl class="book__text">
-                    <dt>긍정의 말들</dt>
-                    <dd>박산호 지음 / 유유</dd>
-                </dl>
-            </div> -->
-            <!--//item-->            
+            <div class="book_list--roll" id="book_list--roll">            
             </div>   
         </article>
         <!--bookList-->
@@ -101,7 +61,7 @@
             <ul class="banner__list">
                 <li><a href="https://codingnoona.thinkific.com/courses/f3851d" target="_blank">첫단계<span>HTML/CSS</span></a></li>
                 <li><a href="https://codingnoona.thinkific.com/courses/2" target="_blank">실전 웹사이트 만들기<span>Javascript</span></a></li>
-                <li><a href="https://codingnoona.thinkific.com/courses/3" target="_blank">프론트엔드 개발자로 가는 마지막 단계<span>Rract</span></a></li>
+                <li><a href="https://codingnoona.thinkific.com/courses/3" target="_blank">프론트엔드 개발자로 가는 마지막 단계<span>React</span></a></li>
             </ul>
         </div>
         <!--theme01-->
@@ -109,56 +69,12 @@
             <div class="book__theme--album">
                 <h2>베스트셀러</h2>
                 <div class="book__tab">
-                    <div class="tab__item tab__item--active" data-page="1">건강/취미</div>
-                    <div class="tab__item" data-page="2">여행</div>
-                    <div class="tab__item" data-page="3">인문학</div>
+                    <div class="tab__item tab__item--active" data-page="1">소설</div>
+                    <div class="tab__item" data-page="2">에세이</div>
+                    <div class="tab__item" data-page="3">실용</div>
                 </div>
-                <div class="book__list" id="book__list">           
-                    <!--list-->
-                    <!-- <div class="book__item">
-                        <div class="book__img"><img class="bookImgSize" src="https://image.aladin.co.kr/product/33413/16/cover200/e572532845_1.jpg" /></div>
-                        <dl class="book__text">
-                            <dt>긍정의 말들</dt>
-                            <dd>박산호 지음 / 유유</dd>
-                        </dl>
-                    </div> -->
-                    <!--//list-->
-                    <!--list-->
-                    <!-- <div class="book__item">
-                        <div class="book__img"><img class="bookImgSize" src="https://image.aladin.co.kr/product/33413/16/cover200/e572532845_1.jpg" /></div>
-                        <dl class="book__text">
-                            <dt>긍정의 말들</dt>
-                            <dd>박산호 지음 / 유유</dd>
-                        </dl>
-                    </div> -->
-                    <!--//list-->
-                    <!--list-->
-                    <!-- <div class="book__item">
-                        <div class="book__img"><img class="bookImgSize" src="https://image.aladin.co.kr/product/33413/16/cover200/e572532845_1.jpg" /></div>
-                        <dl class="book__text">
-                            <dt>긍정의 말들</dt>
-                            <dd>박산호 지음 / 유유</dd>
-                        </dl>
-                    </div> -->
-                    <!--//list-->
-                    <!--list-->
-                    <!-- <div class="book__item">
-                        <div class="book__img"><img class="bookImgSize" src="https://image.aladin.co.kr/product/33413/16/cover200/e572532845_1.jpg" /></div>
-                        <dl class="book__text">
-                            <dt>긍정의 말들</dt>
-                            <dd>박산호 지음 / 유유</dd>
-                        </dl>
-                    </div> -->
-                    <!--//list-->
-                    <!--list-->
-                    <!-- <div class="book__item">
-                        <div class="book__img"><img class="bookImgSize" src="https://image.aladin.co.kr/product/33413/16/cover200/e572532845_1.jpg" /></div>
-                        <dl class="book__text">
-                            <dt>긍정의 말들</dt>
-                            <dd>박산호 지음 / 유유</dd>
-                        </dl>
-                    </div> -->
-                    <!--//list-->     
+                <div class="book__list" id="book__list">          
+                    
                 </div>
             </div>            
         </article>
@@ -201,6 +117,7 @@
     <!--//container--> 
     <!--footer : common/footer.html-->
     <footer id="footer">
+        © Copyright 
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- <script src="/JS/search.js"></script> -->

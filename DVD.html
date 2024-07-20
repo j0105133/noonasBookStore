@@ -4,40 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <script src="https://code.jquery.com/jquery-latest.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <!-- <script src="/JS/slick.js"></script> -->
-    
     <link rel="stylesheet" href="CSS/detail.css">
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/product.css"> 
     <link rel="stylesheet" href="CSS/reset.css"> 
     <link rel="stylesheet" href="CSS/search.css">
-    <!-- <link rel="stylesheet" href="CSS/slick.css">  -->
     <link rel="stylesheet" href="CSS/style.css"> 
-    <link rel="stylesheet" href="CSS/media.css">
-    <title>noonaBookStore</title>   
-    
+    <title>noonaBookStore</title> 
 </head>
 <body>
     <!--header : common/hearder.html-->
-    <header class="header" id="header">                    
+    <header class="header" id="header"> 
+        <div class="header__event"></div>        
+        <div class="header__container wrap">            
+            <h1><a href="/">Noona<span>Book</span>Store</a></h1> 
+            <!--search-->
+            <div class="search-form">
+                <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
+                <button id="customSearchBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
+                    </svg>
+                </button>
+            </div> 
+            <!--//search-->                
+        </div>     
     </header> 
     <!--//header-->
     <!--nav : common/nav.html-->
-    <nav id="nav"></nav>
+    <nav id="nav">
+        <div class="nav__menu wrap">
+            <div class="nav__menu__item active">국내도서</div>        
+            <div class="nav__menu__item">외국도서</div>        
+            <div class="nav__menu__item">eBook</div>
+            <div><a href="dvd.html">DVD</a></div>
+        </div>
+    </nav>
     <!--//nav--> 
     <!--container-->
-    <section class="container wrap">
-        <div class="search-form">
-            <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
-            <button id="customSearchBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
-                </svg>
-            </button>
-        </div>
+    <section class="container wrap">        
         <!--bookList-->
         <h2>추천 DVD</h2>
         <article class="book__container">
@@ -50,7 +57,7 @@
             <ul class="banner__list">
                 <li><a href="https://codingnoona.thinkific.com/courses/f3851d" target="_blank">첫단계<span>HTML/CSS</span></a></li>
                 <li><a href="https://codingnoona.thinkific.com/courses/2" target="_blank">실전 웹사이트 만들기<span>Javascript</span></a></li>
-                <li><a href="https://codingnoona.thinkific.com/courses/3" target="_blank">프론트엔드 개발자로 가는 마지막 단계<span>Rract</span></a></li>
+                <li><a href="https://codingnoona.thinkific.com/courses/3" target="_blank">프론트엔드 개발자로 가는 마지막 단계<span>React</span></a></li>
             </ul>
         </div>
         <!--theme01-->
@@ -71,13 +78,9 @@
     <script src="/JS/common.js"></script>
     <!-- <script src="/JS/detail.js"></script> -->
     <script src="/JS/main.js"></script>
-    <script src="/JS/main2.js"></script>
     <script src="/JS/product.js"></script>
-  
-    
 </body>
 </html>
-
 <script>
     $(document).ready(function() {
         // 검색 버튼 클릭 이벤트
