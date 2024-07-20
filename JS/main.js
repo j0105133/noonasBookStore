@@ -6,6 +6,12 @@ let tabBtn = document.querySelectorAll('.tab__item');
 
 
 
+window.goToDetail = function(isbn) { // 상세 페이지로 이동하는 함수
+  window.location.href = `searchDetail.html?isbn=${isbn}`;
+};
+
+
+
 // 메뉴별 화면 변경 함수
 window.onload = function() {
   let menu = document.querySelectorAll('.nav__menu__item');
@@ -218,6 +224,7 @@ function bestBookDisplay(success) {
 // 편집자 추천 도서 display 함수
 function mdBookDisplay(success) {
   mdBookList = success.item;
+  console.log(mdBookList);
   mdBookRender();
 }
 
@@ -227,14 +234,14 @@ function mdBookDisplay(success) {
 // 신간 render 함수
 function newBookRender() {
   let newBookHTML = newBookList.map(book => `
-    <div class="book__item">
-      <span class="book__img"><img class="bookImgSize" src=${book.cover} /></span>
-      <dl class="book__text">
-          <dt>${book.title}</dt>
-          <dd>${book.author} / ${book.publisher}</dd>
-      </dl>
-    </div>`).join('');
-
+      <div class="book__item">
+        <span class="book__img"><img class="bookImgSize" src=${book.cover} /></span>
+        <dl class="book__text">
+            <dt>${book.title}</dt>
+            <dd>${book.author} / ${book.publisher}</dd>
+        </dl>
+      </div>`).join('');
+    
   document.getElementById('book_list--roll').innerHTML = newBookHTML;
 }
 
