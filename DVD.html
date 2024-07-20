@@ -36,10 +36,12 @@
     <!--nav : common/nav.html-->
     <nav id="nav">
         <div class="nav__menu wrap">
-            <div class="nav__menu__item active">국내도서</div>        
-            <div class="nav__menu__item">외국도서</div>        
-            <div class="nav__menu__item">eBook</div>
-            <div><a href="dvd.html">DVD</a></div>
+            <div class="nav__menu__item" onclick="location.href='index.html?id=' + this.id" id="nav-dom">국내도서</div>
+            <div class="nav__menu__item" onclick="location.href='index.html?id=' + this.id" id="nav-for">외국도서</div>
+            <div class="nav__menu__item" onclick="location.href='index.html?id=' + this.id" id="nav-e">eBook</div>
+            <div class="nav__menu__item active" onclick="location.href='index.html?id=' + this.id" id="nav-dvd">
+                <a href="dvd.html">DVD</a>
+            </div>
         </div>
     </nav>
     <!--//nav--> 

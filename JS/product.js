@@ -1,4 +1,4 @@
-// const API_KEY_DVD = `ttb02jw2356002`
+const API_KEY_DVD = `ttbj01022761248002`
 let queryType = "";
 let dvdCallback = "";
 let searchTarget= ""
@@ -10,7 +10,7 @@ const getDvdData = () => {
     let queryType = "ItemNewAll";
     let dvdCallback = "dvdDisplay";
     let searchTarget= "DVD";
-    let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
+    let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY_DVD}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
 
     // AJAX 요청
     $.ajax({
@@ -23,7 +23,7 @@ const getBestDvdData = () => {
     let queryType = "ItemNewSpecial";
     let dvdCallback = "bestDvdDisplay";
     let searchTarget= "DVD";
-    let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
+    let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY_DVD}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
 
     // AJAX 요청
     $.ajax({
