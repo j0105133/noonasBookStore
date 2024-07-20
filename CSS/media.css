@@ -1,0 +1,9 @@
+@media (max-width: 820px) {
+    .dvd__list{        
+        display: block;       
+    }  
+    .dvd__item{
+        width: 100%;
+     }  
+
+} 
