@@ -234,7 +234,7 @@ function mdBookDisplay(success) {
 // 신간 render 함수
 function newBookRender() {
   let newBookHTML = newBookList.map(book => `
-      <div class="book__item">
+      <div class="book__item cursor-pointer">
         <span class="book__img"><img class="bookImgSize" src=${book.cover} /></span>
         <dl class="book__text">
             <dt>${book.title}</dt>
@@ -248,7 +248,7 @@ function newBookRender() {
 // 베스트셀러 render 함수
 function bestBookRender() {
   let bestBookHTML = bestBookList.map(book => `
-    <div class="book__item tab__book__item tab__book__display__none show">
+    <div class="book__item tab__book__item tab__book__display__none show cursor-pointer">
       <div class="book__img"><img class="bookImgSize" src=${book.cover} /></div>
       <dl class="book__text">
           <dt>${book.title}</dt>
@@ -262,7 +262,7 @@ function bestBookRender() {
 // 편집자 추천도서 render 함수
 function mdBookRender() {
   let mdBookHTML = mdBookList.map(book => `
-    <div class="theme__item">
+    <div class="theme__item cursor-pointer">
       <div class="theme__img"><img class="bookImgSize" src=${book.cover} /></div>
       <dl class="theme__text">
           <dt>${book.title}</dt>
