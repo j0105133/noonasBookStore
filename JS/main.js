@@ -221,8 +221,10 @@ function mdBookDisplay(success) {
   mdBookRender();
 }
 
-window.goToDetail = function(isbn) { // 상세 페이지로 이동하는 함수
-  window.location.href = `searchDetail.html?isbn=${isbn}`;
+// 상세 페이지로 이동하는 함수
+window.goToDetail = function(isbn) { 
+  window.location.href = `view.html?isbn=${isbn}`;
+  // window.location.href = `view.html?isbn=${removeLeadingK(isbn)}`;
   //window.location.href = `searchView.html?isbn=${isbn}`
 };
 
@@ -258,7 +260,7 @@ function bestBookRender() {
 // 편집자 추천도서 render 함수
 function mdBookRender() {
   let mdBookHTML = mdBookList.map(book => `
-    <div class="theme__item">
+    <div class="theme__item" onclick="goToDetail('${book.isbn}')">
       <div class="theme__img"><img class="bookImgSize" src=${book.cover} /></div>
       <dl class="theme__text">
           <dt>${book.title}</dt>
