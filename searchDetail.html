@@ -103,13 +103,31 @@
                         fetchBookDetail(isbn);
                     }
 
+                    /* ### index에서 넘어올 때 시작 ### */
+                    function removeLeadingK(isbn) {
+                        if (isbn.startsWith('K')) {
+                            return isbn.substring(1);
+                        }
+                        return isbn;
+                    }
+                    /* ### index에서 넘어올 때 끝 ### */
+
                     function fetchBookDetail(isbn) {
+                        let cleanedIsbn = removeLeadingK(isbn);
+                        // ISBN이 10자리인지 13자리인지 확인
+                        let target = cleanedIsbn.length === 10 ? 'isbn' : 'isbn13';
+                        console.log(isbn, "isbn")
                         $.ajax({
                             method: "GET",
-                            url: `https://dapi.kakao.com/v3/search/book?target=isbn&query=${isbn}`,
+                            // url: `https://dapi.kakao.com/v3/search/book?target=isbn&query=${isbn}`,
+                            url: `https://dapi.kakao.com/v3/search/book?target=${target}&query=${cleanedIsbn}`,
                             headers: { Authorization: `KakaoAK f4aacc94a442dd1e084f37ce4cad76cb` }
                         })
                         .done(function(data) {
+                            console.log("isbn", cleanedIsbn);
+                            console.log("data", data);
+                            console.log("IsDoc", data.documents);
+                            console.log("IsDoc", data.documents);
                             if (data.documents && data.documents.length > 0) {
                                 const book = data.documents[0];
                                 displayBookDetail(book);
