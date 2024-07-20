@@ -221,13 +221,18 @@ function mdBookDisplay(success) {
   mdBookRender();
 }
 
-
+// 상세 페이지로 이동하는 함수
+window.goToDetail = function(isbn) { 
+  window.location.href = `view.html?isbn=${isbn}`;
+  // window.location.href = `view.html?isbn=${removeLeadingK(isbn)}`;
+  //window.location.href = `searchView.html?isbn=${isbn}`
+};
 
 
 // 신간 render 함수
 function newBookRender() {
   let newBookHTML = newBookList.map(book => `
-    <div class="book__item">
+    <div class="book__item" onclick="goToDetail('${book.isbn}')">
       <span class="book__img"><img class="bookImgSize" src=${book.cover} /></span>
       <dl class="book__text">
           <dt>${book.title}</dt>
@@ -241,7 +246,7 @@ function newBookRender() {
 // 베스트셀러 render 함수
 function bestBookRender() {
   let bestBookHTML = bestBookList.map(book => `
-    <div class="book__item tab__book__item tab__book__display__none show">
+    <div class="book__item tab__book__item tab__book__display__none show" onclick="goToDetail('${book.isbn}')">
       <div class="book__img"><img class="bookImgSize" src=${book.cover} /></div>
       <dl class="book__text">
           <dt>${book.title}</dt>
@@ -255,7 +260,7 @@ function bestBookRender() {
 // 편집자 추천도서 render 함수
 function mdBookRender() {
   let mdBookHTML = mdBookList.map(book => `
-    <div class="theme__item">
+    <div class="theme__item" onclick="goToDetail('${book.isbn}')">
       <div class="theme__img"><img class="bookImgSize" src=${book.cover} /></div>
       <dl class="theme__text">
           <dt>${book.title}</dt>
