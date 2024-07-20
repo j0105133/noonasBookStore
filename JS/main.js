@@ -1,11 +1,11 @@
-const API_KEY = `ttbert93330031001`;
+const API_KEY = `ttbj01022761248002`;
 let mdBookList = [];
 let bestBookList = [];
 let newBookList = [];
 let tabBtn = document.querySelectorAll('.tab__item');
 
 // For DVDs
-const API_KEY_DVD = `ttbert93330031001`;
+const API_KEY_DVD = `ttbj01022761248002`;
 let allDvdList = [];
 let bestDvdList = [];
 
