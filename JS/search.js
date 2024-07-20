@@ -1,26 +1,156 @@
-const API_KEY = 'f4aacc94a442dd1e084f37ce4cad76cb';
-var input = document.getElementById('text-input');
-const searchBtn = document.getElementById('search-btn');
-let bookList = [];
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- <script src="/JS/slick.js"></script> -->
+    <link rel="stylesheet" href="CSS/detail.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/product.css"> 
+    <link rel="stylesheet" href="CSS/reset.css"> 
+    <link rel="stylesheet" href="CSS/search.css">
+    <!-- <link rel="stylesheet" href="CSS/slick.css">  -->
+    <link rel="stylesheet" href="CSS/style.css"> 
+    <title>noonaBookStore</title> 
+</head>
+<body>
+    <!--header : common/hearder.html-->
+    <header class="header" id="header"> 
+        <div class="header__event">Just Code It</div>        
+        <div class="header__container wrap">            
+            <h1><a href="/">Noona<span>Book</span>Store</a></h1>
+            <!--search-->
+            <div class="search-form">
+                <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
+                <button id="customSearchBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
+                    </svg>
+                </button>
+            </div> 
+            <!--//search-->               
+        </div>          
+    </header> 
+    <!--//header-->
+    <!--nav : common/nav.html-->
+    <nav id="nav">
+        <div class="nav__menu wrap">
+            <div class="nav__menu__item active">국내도서</div>        
+            <div class="nav__menu__item">외국도서</div>        
+            <div class="nav__menu__item">eBook</div>
+            <!-- <div><a href="search.html">검색페이지</a></div> -->
+            <div><a href="dvd.html">DVD</a></div>
+            <!-- <div><a href="view.html">상세페이지</a></div> -->
+        </div>
+    </nav>
+    <!--//nav--> 
+    <!--container-->
+    <section class="container wrap">        
+        <!--bookList-->
+        <h2>주목할만한 신간</h2>
+        <article class="book__container">
+            <div class="book_list--roll" id="book_list--roll">            
+            </div>   
+        </article>
+        <!--bookList-->
+        <div class="banner_container mgT40">
+            <ul class="banner__list">
+                <li><a href="https://codingnoona.thinkific.com/courses/f3851d" target="_blank">첫단계<span>HTML/CSS</span></a></li>
+                <li><a href="https://codingnoona.thinkific.com/courses/2" target="_blank">실전 웹사이트 만들기<span>Javascript</span></a></li>
+                <li><a href="https://codingnoona.thinkific.com/courses/3" target="_blank">프론트엔드 개발자로 가는 마지막 단계<span>React</span></a></li>
+            </ul>
+        </div>
+        <!--theme01-->
+        <article class="book__theme mgT40">
+            <div class="book__theme--album">
+                <h2>베스트셀러</h2>
+                <div class="book__tab">
+                    <div class="tab__item tab__item--active" data-page="1">소설</div>
+                    <div class="tab__item" data-page="2">에세이</div>
+                    <div class="tab__item" data-page="3">실용</div>
+                </div>
+                <div class="book__list" id="book__list">          
+                    
+                </div>
+            </div>            
+        </article>
+        <!--theme01-->
+        <!--theme02-->
+        <article class="book__theme mgT40">
+            <div class="book__theme--list">
+                <h2>편집자 추천</h2>                
+                <div class="theme__list" id="theme__list">
+                    <!--list-->
+                    <!-- <div class="theme__item">
+                        <div class="theme__img"><img class="bookImgSize" src="/images/img1.jpg" /></div>
+                        <dl class="theme__text">
+                            <dt>너에게 들려주는 단단한 말 </dt>
+                            <dd>김종원 (지은이) | 퍼스트펭귄 | 2024년 7월</dd>
+                            <dd>출간 저서 누적 판매량 100만 부. 20여 년간 집필한 책 100여 권. 각종 방송과 기업, 대학 및 단체를 대상으로 강연하며 소통해 온 인문교육 전문가. 부모들을 위해 집필한 다수의 인문학 책이 큰 사랑을 받으며 “대한민국 학부모들이 가장 사랑하는 인문학 멘토”로 불리게 된 그가 이번에는 청소년들을 위한 ‘생각 멘토’로 나섰다.</dd>
+                        </dl>
+                    </div> -->
+                    <!--//list-->  
+                    <!--list-->
+                    <!-- <div class="theme__item">
+                        <div class="theme__img"><img class="bookImgSize" src="/images/img1.jpg" /></div>
+                        <dl class="theme__text">
+                            <dt>너에게 들려주는 단단한 말 </dt>
+                            <dd>김종원 (지은이) | 퍼스트펭귄 | 2024년 7월</dd>
+                            <dd>출간 저서 누적 판매량 100만 부. 20여 년간 집필한 책 100여 권. 각종 방송과 기업, 대학 및 단체를 대상으로 강연하며 소통해 온 인문교육 전문가. 부모들을 위해 집필한 다수의 인문학 책이 큰 사랑을 받으며 “대한민국 학부모들이 가장 사랑하는 인문학 멘토”로 불리게 된 그가 이번에는 청소년들을 위한 ‘생각 멘토’로 나섰다.</dd>
+                            <dd class="theme__button"><button class="theme__button--view">자세히보기</button></dd>
+                        </dl>
+                        
+                    </div> -->
+                    <!--//list-->          
+                </div>
+                <div class="read__more__btn__box">
+                    <button type="button" id="read-more">도서 더보기</button>
+                </div>
+            </div>            
+        </article>
+        <!--theme02-->
+    </section>
+    <!--//container--> 
+    <!--footer : common/footer.html-->
+    <footer id="footer">
+        © Copyright 
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <!-- <script src="/JS/search.js"></script> -->
+    <script src="/JS/common.js"></script>
+    <!-- <script src="/JS/detail.js"></script> -->
+    <script src="/JS/main.js"></script>
+    <script src="/JS/main2.js"></script>
+    <script src="/JS/product.js"></script>
+  
+    
+</body>
+</html>
 
-searchBtn.addEventListener('click', function(){
-  search();
-});
-
-function search (){
-  let inputValue = input.value;
-  $.ajax({
-    method: "GET",
-    url: "https://dapi.kakao.com/v3/search/book",
-    data: { query: inputValue },
-    headers: { Authorization: `KakaoAK ${API_KEY}` }
-  })
-  .done(function(data) {
-    console.log(data);
-    bookList = data.documents;
-    console.log(bookList);
-    localStorage.setItem('bookList', JSON.stringify(bookList));
-    //window.location.href = 'search.html';
-    window.location.href = `search.html?query=${inputValue}`;
-  });
-}
+<script>
+    $(document).ready(function() {
+        // 검색 버튼 클릭 이벤트
+        $('#customSearchBtn').click(function() {
+            searchBooks();
+        });
+    
+        // Enter 키 이벤트
+        $('#customTextInput').keypress(function(event) {
+            if (event.key === "Enter") {
+                searchBooks();
+            }
+        });
+    
+        // 검색 함수
+        function searchBooks() {
+            const inputValue = $('#customTextInput').val();
+            const newUrl = `search.html?query=${encodeURIComponent(inputValue)}`;
+            window.location.href = newUrl;
+            $('#customTextInput').val(''); // 입력 필드 비우기
+        }
+    });
+    </script>
