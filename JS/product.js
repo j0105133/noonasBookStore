@@ -1,4 +1,4 @@
-const API_KEY_DVD = `ttbsueyesi2317002`
+const API_KEY_DVD = `ttbert93330031001`
 let queryType = "";
 let dvdCallback = "";
 let searchTarget= ""

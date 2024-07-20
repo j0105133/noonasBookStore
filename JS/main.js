@@ -1,4 +1,4 @@
-const API_KEY = `ttbsueyesi2317002`;
+const API_KEY = `ttbert93330031001`;
 let mdBookList = [];
 let bestBookList = [];
 let newBookList = [];
@@ -239,7 +239,7 @@ window.goToDetail = function(isbn) {
 // 신간 render 함수
 function newBookRender() {
   let newBookHTML = newBookList.map(book => `
-    <div class="book__item cursor-pointer" onclick="goToDetail('${book.isbn}')">
+    <div class="book__item swiper-slide" onclick="goToDetail('${book.isbn}')">
       <span class="book__img"><img class="bookImgSize" src=${book.cover} /></span>
       <dl class="book__text">
           <dt>${book.title}</dt>
@@ -252,7 +252,7 @@ function newBookRender() {
 // 베스트셀러 render 함수
 function bestBookRender() {
   let bestBookHTML = bestBookList.map(book => `
-    <div class="book__item tab__book__item tab__book__display__none show cursor-pointer" onclick="goToDetail('${book.isbn}')">
+    <div class="book__item tab__book__item tab__book__display__none show " onclick="goToDetail('${book.isbn}')">
       <div class="book__img"><img class="bookImgSize" src=${book.cover} /></div>
       <dl class="book__text">
           <dt>${book.title}</dt>
