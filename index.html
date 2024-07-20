@@ -7,16 +7,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- <script src="/JS/slick.js"></script> -->
     <link rel="stylesheet" href="CSS/detail.css">
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/product.css"> 
     <link rel="stylesheet" href="CSS/reset.css"> 
     <link rel="stylesheet" href="CSS/search.css">
+    <!-- <link rel="stylesheet" href="CSS/slick.css">  -->
     <link rel="stylesheet" href="CSS/style.css"> 
     <title>noonaBookStore</title> 
 </head>
 <body>
-    <!--header : common/header.html-->
+    <!--header : common/hearder.html-->
     <header class="header" id="header"> 
         <div class="header__event">Just Code It</div>        
         <div class="header__container wrap">            
@@ -37,17 +39,19 @@
     <!--nav : common/nav.html-->
     <nav id="nav">
         <div class="nav__menu wrap">
-            <div class="nav__menu__item active" data-category="국내도서">국내도서</div>        
-            <div class="nav__menu__item" data-category="외국도서">외국도서</div>        
-            <div class="nav__menu__item" data-category="eBook">eBook</div>
-            <div class="nav__menu__item" data-category="DVD">DVD</div>
+            <div class="nav__menu__item active">국내도서</div>        
+            <div class="nav__menu__item">외국도서</div>        
+            <div class="nav__menu__item">eBook</div>
+            <!-- <div><a href="search.html">검색페이지</a></div> -->
+            <div><a href="dvd.html">DVD</a></div>
+            <!-- <div><a href="view.html">상세페이지</a></div> -->
         </div>
     </nav>
     <!--//nav--> 
     <!--container-->
-    <section class="container wrap" id="book-section">        
+    <section class="container wrap">        
         <!--bookList-->
-        <h2 id="section-title">주목할만한 신간</h2>
+        <h2>주목할만한 신간</h2>
         <article class="book__container">
             <div class="book_list--roll" id="book_list--roll">            
             </div>   
@@ -110,29 +114,6 @@
         </article>
         <!--theme02-->
     </section>
-    <!-- DVD container (hidden by default) -->
-    <section class="container wrap" id="dvd-section" style="display:none;">        
-        <h2>추천 DVD</h2>
-        <article class="book__container">
-            <div class="book_list--roll dvd__best" id="dvd__best">
-            </div>   
-        </article>
-        <div class="banner_container mgT40">
-            <ul class="banner__list">
-                <li><a href="https://codingnoona.thinkific.com/courses/f3851d" target="_blank">첫단계<span>HTML/CSS</span></a></li>
-                <li><a href="https://codingnoona.thinkific.com/courses/2" target="_blank">실전 웹사이트 만들기<span>Javascript</span></a></li>
-                <li><a href="https://codingnoona.thinkific.com/courses/3" target="_blank">프론트엔드 개발자로 가는 마지막 단계<span>React</span></a></li>
-            </ul>
-        </div>
-        <!--theme01-->
-        <article class="book__theme mgT40">
-            <div class="book__theme--album">
-                <h2>DVD</h2>                
-                <div class="dvd__list" id="dvd__list"> 
-                </div>
-            </div>            
-        </article>       
-    </section>
     <!--//container--> 
     <!--footer : common/footer.html-->
     <footer id="footer">
@@ -145,6 +126,8 @@
     <script src="/JS/main.js"></script>
     <script src="/JS/main2.js"></script>
     <script src="/JS/product.js"></script>
+  
+    
 </body>
 </html>
 
@@ -170,4 +153,4 @@
             $('#customTextInput').val(''); // 입력 필드 비우기
         }
     });
-</script>
+    </script>
