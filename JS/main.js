@@ -1,16 +1,17 @@
-const API_KEY = `ttbsueyesi2317002`;
+const API_KEY = `ttbert93330031001`;
 let mdBookList = [];
 let bestBookList = [];
 let newBookList = [];
 let tabBtn = document.querySelectorAll('.tab__item');
 
-
+// For DVDs
+const API_KEY_DVD = `ttbert93330031001`;
+let allDvdList = [];
+let bestDvdList = [];
 
 window.goToDetail = function(isbn) { // 상세 페이지로 이동하는 함수
   window.location.href = `searchDetail.html?isbn=${isbn}`;
 };
-
-
 
 // 메뉴별 화면 변경 함수
 window.onload = function() {
@@ -23,18 +24,27 @@ window.onload = function() {
       menuItem.classList.add('active');
 
       // 카테고리에 따라 책 데이터 렌더링
-      categoryBookRender(event.target.textContent);
+      const category = event.target.getAttribute('data-category');
+      if (category === 'DVD') {
+        displayDVDContent();
+      } else {
+        document.getElementById('dvd-section').style.display = 'none';
+        document.getElementById('book-section').style.display = 'block';
+        categoryBookRender(category);
+      }
     });
   });
 
   // 탭 메뉴 클릭 시 데이터 요청 및 렌더링
   tabBtn.forEach(tabMenu => {
     tabMenu.addEventListener('click', function(event) {
-      let category = document.querySelector('.nav__menu__item.active').textContent;
+      let category = document.querySelector('.nav__menu__item.active').getAttribute('data-category');
       let subCategory = event.target.textContent;
       let page = tabMenu.dataset.page; // 탭 메뉴의 데이터 속성 사용
 
-      getBestBookRender(page, category, subCategory);
+      if (category !== 'DVD') {
+        getBestBookRender(page, category, subCategory);
+      }
     });
   });
 };
@@ -58,8 +68,6 @@ function getBestBookRender(page, category, subCategory) {
   });
 }
 
-
-
 // 베스트셀러 탭 메뉴 클릭 이벤트
 for (let i = 0; i < tabBtn.length; i++){
   $('.tab__item').eq(i).on('click', function(){
@@ -67,10 +75,6 @@ for (let i = 0; i < tabBtn.length; i++){
     $('.tab__item').eq(i).addClass('tab__item--active');
   });
 }
-
-
-
-
 
 // 국내도서, 외국도서, eBook에 따라 데이터 요청 및 렌더링
 function categoryBookRender(category) {
@@ -82,9 +86,6 @@ function categoryBookRender(category) {
   $('.tab__item').removeClass('tab__item--active'); 
   $('.tab__item').eq(0).addClass('tab__item--active');
 }
-
-
-
 
 // 각 메뉴별 책 데이터 요청 및 렌더링
 function menuBook(menu) {
@@ -130,39 +131,125 @@ function menuBook(menu) {
   });
 }
 
+// DVD 콘텐츠를 동적으로 로드하여 표시하는 함수
+function displayDVDContent() {
+  document.getElementById('book-section').style.display = 'none';
+  document.getElementById('dvd-section').style.display = 'block';
+  getDvdData();
+  getBestDvdData();
+}
+
+// DVD 데이터 요청 함수
+const getDvdData = () => {
+  let queryType = "ItemNewAll";
+  let dvdCallback = "dvdDisplay";
+  let searchTarget= "DVD";
+  let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY_DVD}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
+
+  // AJAX 요청
+  $.ajax({
+      url : dvdUrl,
+      jsonp: dvdCallback,
+      dataType: "jsonp"
+  });
+}
+
+const getBestDvdData = () => {
+  let queryType = "ItemNewSpecial";
+  let dvdCallback = "bestDvdDisplay";
+  let searchTarget= "DVD";
+  let dvdUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY_DVD}&QueryType=${queryType}&MaxResults=10&start=1&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=${dvdCallback}`;
+
+  // AJAX 요청
+  $.ajax({
+      url : dvdUrl,
+      jsonp: dvdCallback,
+      dataType: "jsonp"
+  });
+}
+
+// 콜백 함수 
+const dvdDisplay = (success) => {
+  allDvdList = success.item;
+  console.log("dvd",allDvdList);
+  DVDRender();
+}
+
+const bestDvdDisplay = (success) => {
+  bestDvdList = success.item;
+  console.log("bestDVD", bestDvdList);
+  bestDvdRender();
+}
+
+// DVD 렌더링 함수
+const DVDRender = () => {
+  let dvdListHTML = ``;
+  dvdListHTML = allDvdList.map(dvd => `
+      <div class="dvd__item">
+          <div class="dvd__img"><img class="bookImgSize" src=${dvd.cover} /></div>
+          <dl class="dvd__text">
+              <dt>${dvd.title}</dt>
+              <dd class="dvd__author">${dvd.author}</dd>
+              <dd>${dvd.description}</dd>
+              <dd>${dvd.publisher}</dd>
+          </dl>
+      </div>        
+    `).join('');
+
+  document.getElementById('dvd__list').innerHTML = dvdListHTML;
+}
+
+// 베스트 DVD 렌더링 함수
+const bestDvdRender = () => {
+  let bestDvdHTML = ``;
+  let itemsPerPage = 5;
+  
+  bestDvdHTML = bestDvdList.slice(0, itemsPerPage).map(dvd => `
+      <div class="dvd__item">
+          <div class="dvd__img"><img class="bookImgSize" src=${dvd.cover} /></div>
+          <dl class="dvd__text">
+              <dt>${dvd.title}</dt>
+              <dd class="dvd__author">${dvd.author}</dd>
+          </dl>
+      </div>        
+    `).join('');
+
+  document.getElementById('dvd__best').innerHTML = bestDvdHTML;
+}
+
 let count = 2
 // 편집자 추천 더보기 버튼
-  document.getElementById('read-more').addEventListener('click', function(){
-    let navActive = document.querySelector('.nav__menu__item.active').textContent;
-    let category = (navActive == "국내도서") ? "book" : (navActive == "외국도서") ? "Foreign" : "eBook"
+document.getElementById('read-more').addEventListener('click', function(){
+  let navActive = document.querySelector('.nav__menu__item.active').getAttribute('data-category');
+  let category = (navActive === "국내도서") ? "book" : (navActive === "외국도서") ? "Foreign" : "eBook";
 
-    let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewSpecial&MaxResults=4&start=${count}&SearchTarget=${category}&output=js&Version=20131101&callback=mdBookDisplay`
-      // 편집자 추천
-      $.ajax({
-        url: mdBookUrl,
-        jsonp: "mdBookDisplay",
-        dataType: "jsonp",
-        success: function(data) {
-          mdBookDisplay(data);
-        },
-        error: function(err) {
-          console.error(err);
-        }
-      });
-      count += 1
-  })
-
+  let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewSpecial&MaxResults=4&start=${count}&SearchTarget=${category}&output=js&Version=20131101&callback=mdBookDisplay`
+  
+  // 편집자 추천
+  $.ajax({
+    url: mdBookUrl,
+    jsonp: "mdBookDisplay",
+    dataType: "jsonp",
+    success: function(data) {
+      mdBookDisplay(data);
+    },
+    error: function(err) {
+      console.error(err);
+    }
+  });
+  count += 1
+})
 
 // 최초 화면 렌더링
-function getBookData (){
+function getBookData() {
   // 신간
-  let newBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&callback=newBookDisplay`
+  let newBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&callback=newBookDisplay`;
 
   // 베스트셀러
-  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=Bestseller&MaxResults=4&start=1&SearchTarget=Book&output=js&Version=20131101&callback=bestBookDisplay`
+  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=Bestseller&MaxResults=4&start=1&SearchTarget=Book&output=js&Version=20131101&callback=bestBookDisplay`;
   
   // 편집자 추전
-  let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemEditorChoice&MaxResults=4&start=1&SearchTarget=Book&output=js&Version=20131101&callback=mdBookDisplay&CategoryId=3060`
+  let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemEditorChoice&MaxResults=4&start=1&SearchTarget=Book&output=js&Version=20131101&callback=mdBookDisplay&CategoryId=3060`;
 
   // AJAX 요청
   // 신간
@@ -205,10 +292,6 @@ function getBookData (){
 
 getBookData();
 
-
-
-
-
 // 신간 display 함수
 function newBookDisplay(success) {
   newBookList = success.item;
@@ -227,14 +310,6 @@ function mdBookDisplay(success) {
   console.log(mdBookList);
   mdBookRender();
 }
-
-// 상세 페이지로 이동하는 함수
-window.goToDetail = function(isbn) { 
-  window.location.href = `view.html?isbn=${isbn}`;
-  // window.location.href = `view.html?isbn=${removeLeadingK(isbn)}`;
-  //window.location.href = `searchView.html?isbn=${isbn}`
-};
-
 
 // 신간 render 함수
 function newBookRender() {
