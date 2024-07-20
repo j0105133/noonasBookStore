@@ -1,86 +1,100 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="CSS/detail.css">
-    <link rel="stylesheet" href="CSS/main.css">
-    <link rel="stylesheet" href="CSS/product.css"> 
-    <link rel="stylesheet" href="CSS/reset.css"> 
-    <link rel="stylesheet" href="CSS/search.css">
-    <link rel="stylesheet" href="CSS/style.css"> 
-    <title>noonaBookStore</title> 
-</head>
-  <body>
-    <!--header : common/hearder.html-->
-    <header class="header" id="header"> 
-      <div class="header__event"></div>        
-      <div class="header__container wrap">            
-          <h1><a href="/">Noona<span>Book</span>Store</a></h1>
-          <!--search-->
-          <div class="search-form">
-            <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
-            <button id="customSearchBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
-                </svg>
-            </button>
-          </div> 
-         <!--//search-->                   
-      </div>      
-    </header> 
-    <!--//header-->
-    <!--nav : common/nav.html-->
-    <nav id="nav">
-      <div class="nav__menu wrap">
-          <div class="nav__menu__item active">국내도서</div>        
-          <div class="nav__menu__item">외국도서</div>        
-          <div class="nav__menu__item">eBook</div>
-          <div><a href="dvd.html">DVD</a></div>
-      </div>
-    </nav>
-    <!--//nav--> 
-    <!--container-->
-    <section class="container product__container wrap">
-      <article class="book__detail mgT40">
-        <h2>도서 상세 정보</h2>
-        <div id="detail-board">
-          <div class="detail__wrap">
-            <div class="detail__img">
-              <img id="detail-img">
-            </div>
-            <div class="detail__text">
-              <p><!-- 카테고리 --> <em id="detail-info-cate"></em></p>
-              <p class="detail__book__title"><!-- 제목 --> <em id="detail-info-title"></em></p>
-              <p>저자 <em id="detail-info-author"></em></p>
-              <p>쪽수 <em id="detail-info-page"></em></p>
-              <p>원제 <em id="detail-info-otitle"></em></p>
-              <p>출판사 <em id="detail-info-pub"></em></p>
-              <!-- <p>출판일 <em id="detail-info-date"></em></p> -->
-              <p>ISBN <em id="detail-info-isbn"></em></p>
-            </div>
-          </div>
-          <div class="detail__descr">
-            <h3>줄거리</h3>
-            <p id="detail-book-desc"></p>
-          </div>
-          <div class="detail__buy">
-            <a id="detail-book-buy-btn-aladin" href="#" class="button" target="_blank">알라딘에서 구매하기</a>
-            <a id="detail-book-buy-btn-kyobo" href="#" class="button" target="_blank">교보문고에서 구매하기</a>
-            <a id="detail-book-buy-btn-yes24" href="#" class="button" target="_blank">yes24에서 구매하기</a>
-          </div>
-        </div>
-      </article>
-    </section>
-    <!--//container-->
-    <footer id="footer"></footer>
-    <script src="/JS/search.js"></script>
-    <script src="/JS/common.js"></script>
-    <script src="/JS/detail.js"></script>
-    <script src="/JS/main.js"></script>
-    <script src="/JS/product.js"></script>
-  </body>
-</html>
+const DW_API_KEY = 'ttbsueyesi2317002';
+let bookInfo = [];
+let receivedISBN = '';
+
+// URL에서 isbn 파라미터 추출
+const urlParams = new URLSearchParams(window.location.search);
+const isbn = decodeURIComponent(urlParams.get('isbn')); // 디코딩된 ISBN 값 사용
+console.log(isbn);
+
+if (isbn) {
+    // ISBN 13자리와 10자리 추출
+    const { isbn13, isbn10 } = getIsbn13And10(isbn);
+    receivedISBN = isbn13 || isbn10;
+
+    if (receivedISBN) {
+        getDetailBookData();
+    } else {
+        console.error('No valid ISBN found');
+        $('#bookInfo').html('<p>유효한 ISBN을 찾을 수 없습니다.</p>');
+    }
+}
+
+// ISBN 문자열을 공백으로 나누어 13자리와 10자리 ISBN을 추출하는 함수
+function getIsbn13And10(isbnString) {
+    const isbnArray = isbnString.split(' ');
+    const isbn13 = isbnArray.find(isbn => isbn.length === 13);
+    const isbn10 = isbnArray.find(isbn => isbn.length === 10);
+    return { isbn13, isbn10 };
+}
+
+// 책 정보를 가져오는 함수
+function getDetailBookData() {
+    const url = `http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${DW_API_KEY}&itemIdType=ISBN&ItemId=${receivedISBN}&Cover=Big&output=js&Version=20131101&OptResult=ebookList,usedList,reviewList&callback=detailBookDisplay`;
+
+    // AJAX 요청을 보냅니다. getJSON() 함수는 알라딘 API 대용으로 사용불가.
+    $.ajax({
+        url: url,
+        jsonp: "detailBookDisplay",
+        dataType: "jsonp"
+    });
+}
+
+// 콜백 함수
+function detailBookDisplay(success) {
+    console.log(success);
+    console.log(success.item[0]);
+    console.log(success.item[0].title);
+    bookInfo = success.item;
+    console.log("bookInfo", bookInfo);
+    console.log("bookInfo[0]", bookInfo[0]);
+    detailRender();
+}
+
+// 책 세부 정보를 렌더링하는 함수
+function detailRender() {
+    if (bookInfo.length === 0) {
+        $('#bookInfo').html('<p>책 정보를 로드할 수 없습니다.</p>');
+        return;
+    }
+
+    let detailBookImgHTML = bookInfo[0].cover;
+    document.getElementById('detail-img').src = detailBookImgHTML;
+
+    let detailBookTitle = bookInfo[0].title;
+    document.getElementById('detail-info-title').textContent = detailBookTitle;
+
+    let detailBookAuthor = bookInfo[0].author;
+    document.getElementById('detail-info-author').textContent = detailBookAuthor;
+
+    let detailBookCate = bookInfo[0].categoryName;
+    document.getElementById('detail-info-cate').textContent = detailBookCate;
+
+    let detailBookPage = bookInfo[0].subInfo.itemPage;
+    document.getElementById('detail-info-page').textContent = detailBookPage;
+
+    let detailBookOTitle = bookInfo[0].subInfo.originalTitle;
+    document.getElementById('detail-info-otitle').textContent = detailBookOTitle;
+
+    let detailBookPub = bookInfo[0].publisher;
+    document.getElementById('detail-info-pub').textContent = detailBookPub;
+
+    let detailISBN = bookInfo[0].isbn;
+    document.getElementById('detail-info-isbn').textContent = detailISBN;
+
+    let detailDate = bookInfo[0].isbn;
+    document.getElementById('detail-info-isbn').textContent = detailISBN;
+
+    let detailBookDesc = bookInfo[0].description;
+    document.getElementById('detail-book-desc').textContent = detailBookDesc;
+
+    let detailBookBuyBtnA = bookInfo[0].link;
+    document.getElementById('detail-book-buy-btn-aladin').setAttribute('href', detailBookBuyBtnA);
+
+    let detailTitleFind = detailBookTitle;
+    let detailBookBuyBtnK = `https://search.kyobobook.co.kr/search?keyword=${detailTitleFind}&gbCode=TOT&target=total`;
+    document.getElementById('detail-book-buy-btn-kyobo').setAttribute('href', detailBookBuyBtnK);
+
+    let detailBookBuyBtnY = `https://www.yes24.com/Product/Search?domain=ALL&query=${detailTitleFind}`;
+    document.getElementById('detail-book-buy-btn-yes24').setAttribute('href', detailBookBuyBtnY);
+}
