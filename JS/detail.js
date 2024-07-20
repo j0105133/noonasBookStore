@@ -82,8 +82,19 @@ function detailRender() {
     let detailISBN = bookInfo[0].isbn;
     document.getElementById('detail-info-isbn').textContent = detailISBN;
 
+    let detailDate = bookInfo[0].isbn;
+    document.getElementById('detail-info-isbn').textContent = detailISBN;
+
     let detailBookDesc = bookInfo[0].description;
     document.getElementById('detail-book-desc').textContent = detailBookDesc;
 
-    
+    let detailBookBuyBtnA = bookInfo[0].link;
+    document.getElementById('detail-book-buy-btn-aladin').setAttribute('href', detailBookBuyBtnA);
+
+    let detailTitleFind = detailBookTitle;
+    let detailBookBuyBtnK = `https://search.kyobobook.co.kr/search?keyword=${detailTitleFind}&gbCode=TOT&target=total`;
+    document.getElementById('detail-book-buy-btn-kyobo').setAttribute('href', detailBookBuyBtnK);
+
+    let detailBookBuyBtnY = `https://www.yes24.com/Product/Search?domain=ALL&query=${detailTitleFind}`;
+    document.getElementById('detail-book-buy-btn-yes24').setAttribute('href', detailBookBuyBtnY);
 }
