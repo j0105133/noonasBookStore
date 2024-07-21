@@ -1,4 +1,4 @@
-const DW_API_KEY = 'ttbj01022761248002';
+const DW_API_KEY = 'ttbbonnystory_1348001';
 let bookInfo = [];
 let receivedISBN = '';
 let forKakaoLink = '';

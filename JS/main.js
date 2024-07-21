@@ -1,9 +1,8 @@
-const API_KEY = `ttbj01022761248002`;
+const API_KEY = `ttbbonnystory_1348001`;
 let mdBookList = [];
 let bestBookList = [];
 let newBookList = [];
 let tabBtn = document.querySelectorAll('.tab__item');
-
 
 
 window.goToDetail = function(isbn) { // 상세 페이지로 이동하는 함수
@@ -49,19 +48,21 @@ window.onload = function() {
       // 메뉴 클릭 시 active 클래스 처리
       document.querySelectorAll('.nav__menu__item').forEach(item => item.classList.remove('active'));
       menuItem.classList.add('active');
-
       // 카테고리에 따라 책 데이터 렌더링
+      categoryBookRender(event.target.textContent);
       categoryBookRender(event.target.textContent);
     });
   });
-
+ 
   // 탭 메뉴 클릭 시 데이터 요청 및 렌더링
   tabBtn.forEach(tabMenu => {
     tabMenu.addEventListener('click', function(event) {
       let category = document.querySelector('.nav__menu__item.active').textContent;
+      let category = document.querySelector('.nav__menu__item.active').textContent;
       let subCategory = event.target.textContent;
       let page = tabMenu.dataset.page; // 탭 메뉴의 데이터 속성 사용
 
+      getBestBookRender(page, category, subCategory);
       getBestBookRender(page, category, subCategory);
     });
   });
@@ -70,7 +71,8 @@ window.onload = function() {
 // 베스트 셀러 데이터 가져오기 및 렌더링
 function getBestBookRender(page, category, subCategory) {
   let searchTarget = (category === '국내도서') ? 'Book' : (category === '외국도서') ? 'Foreign' : 'eBook';
-  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=Bestseller&MaxResults=4&start=${page}&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=bestBookDisplay`;
+  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=Bestseller&MaxResults=4&start=${page}&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=bestBookDisplay`;
+  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=Bestseller&MaxResults=4&start=${page}&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=bestBookDisplay`;
 
   // 베스트셀러 AJAX 요청
   $.ajax({
@@ -88,6 +90,8 @@ function getBestBookRender(page, category, subCategory) {
 
 
 
+
+
 // 베스트셀러 탭 메뉴 클릭 이벤트
 for (let i = 0; i < tabBtn.length; i++){
   $('.tab__item').eq(i).on('click', function(){
@@ -95,6 +99,10 @@ for (let i = 0; i < tabBtn.length; i++){
     $('.tab__item').eq(i).addClass('tab__item--active');
   });
 }
+
+
+
+
 
 
 
@@ -114,11 +122,14 @@ function categoryBookRender(category) {
 
 
 
+
+
+
 // 각 메뉴별 책 데이터 요청 및 렌더링
 function menuBook(menu) {
-  let newBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=${menu}&output=js&Version=20131101&callback=newBookDisplay`;
-  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=Bestseller&MaxResults=4&start=1&SearchTarget=${menu}&output=js&Version=20131101&callback=bestBookDisplay`;
-  let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=Bestseller&MaxResults=4&start=2&SearchTarget=${menu}&output=js&Version=20131101&callback=mdBookDisplay`;
+  let newBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=${menu}&output=js&Version=20131101&callback=newBookDisplay`;
+  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=Bestseller&MaxResults=4&start=1&SearchTarget=${menu}&output=js&Version=20131101&callback=bestBookDisplay`;
+  let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=Bestseller&MaxResults=4&start=2&SearchTarget=${menu}&output=js&Version=20131101&callback=mdBookDisplay`;
 
   // AJAX 요청
   $.ajax({
@@ -163,7 +174,25 @@ let count = 2
   document.getElementById('read-more').addEventListener('click', function(){
     let navActive = document.querySelector('.nav__menu__item.active').textContent;
     let category = (navActive == "국내도서") ? "book" : (navActive == "외국도서") ? "Foreign" : "eBook"
+  document.getElementById('read-more').addEventListener('click', function(){
+    let navActive = document.querySelector('.nav__menu__item.active').textContent;
+    let category = (navActive == "국내도서") ? "book" : (navActive == "외국도서") ? "Foreign" : "eBook"
 
+    let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewSpecial&MaxResults=4&start=${count}&SearchTarget=${category}&output=js&Version=20131101&callback=mdBookDisplay`
+      // 편집자 추천
+      $.ajax({
+        url: mdBookUrl,
+        jsonp: "mdBookDisplay",
+        dataType: "jsonp",
+        success: function(data) {
+          mdBookDisplay(data);
+        },
+        error: function(err) {
+          console.error(err);
+        }
+      });
+      count += 1
+  })
     let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewSpecial&MaxResults=4&start=${count}&SearchTarget=${category}&output=js&Version=20131101&callback=mdBookDisplay`
       // 편집자 추천
       $.ajax({
@@ -181,16 +210,18 @@ let count = 2
   })
 
 
+
 // 최초 화면 렌더링
 function getBookData (){
+function getBookData (){
   // 신간
-  let newBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&callback=newBookDisplay`
+  let newBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&callback=newBookDisplay`
 
   // 베스트셀러
-  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=Bestseller&MaxResults=4&start=1&SearchTarget=Book&output=js&Version=20131101&callback=bestBookDisplay`
+  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=Bestseller&MaxResults=4&start=1&SearchTarget=Book&output=js&Version=20131101&callback=bestBookDisplay`
   
   // 편집자 추전
-  let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemEditorChoice&MaxResults=4&start=1&SearchTarget=Book&output=js&Version=20131101&callback=mdBookDisplay&CategoryId=3060`
+  let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=ItemEditorChoice&MaxResults=4&start=1&SearchTarget=Book&output=js&Version=20131101&callback=mdBookDisplay&CategoryId=3060`
 
   // AJAX 요청
   // 신간
@@ -237,6 +268,10 @@ getBookData();
 
 
 
+
+
+
+
 // 신간 display 함수
 function newBookDisplay(success) {
   newBookList = success.item;
@@ -267,7 +302,7 @@ window.goToDetail2 = function(isbn) {
 // 신간 render 함수
 function newBookRender() {
   let newBookHTML = newBookList.map(book => `
-    <div class="book__item cursor-pointer" onclick="goToDetail2('${book.isbn}')">
+    <div class="book__item swiper-slide" onclick="goToDetail2('${book.isbn}')">
       <span class="book__img"><img class="bookImgSize" src=${book.cover} /></span>
       <dl class="book__text">
           <dt>${book.title}</dt>
@@ -280,7 +315,7 @@ function newBookRender() {
 // 베스트셀러 render 함수
 function bestBookRender() {
   let bestBookHTML = bestBookList.map(book => `
-    <div class="book__item tab__book__item tab__book__display__none show cursor-pointer" onclick="goToDetail2('${book.isbn}')">
+    <div class="book__item tab__book__item tab__book__display__none show " onclick="goToDetail2('${book.isbn}')">
       <div class="book__img"><img class="bookImgSize" src=${book.cover} /></div>
       <dl class="book__text">
           <dt>${book.title}</dt>
