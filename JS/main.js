@@ -50,7 +50,6 @@ window.onload = function() {
       menuItem.classList.add('active');
       // 카테고리에 따라 책 데이터 렌더링
       categoryBookRender(event.target.textContent);
-      categoryBookRender(event.target.textContent);
     });
   });
  
@@ -58,11 +57,9 @@ window.onload = function() {
   tabBtn.forEach(tabMenu => {
     tabMenu.addEventListener('click', function(event) {
       let category = document.querySelector('.nav__menu__item.active').textContent;
-      let category = document.querySelector('.nav__menu__item.active').textContent;
       let subCategory = event.target.textContent;
       let page = tabMenu.dataset.page; // 탭 메뉴의 데이터 속성 사용
 
-      getBestBookRender(page, category, subCategory);
       getBestBookRender(page, category, subCategory);
     });
   });
@@ -71,7 +68,6 @@ window.onload = function() {
 // 베스트 셀러 데이터 가져오기 및 렌더링
 function getBestBookRender(page, category, subCategory) {
   let searchTarget = (category === '국내도서') ? 'Book' : (category === '외국도서') ? 'Foreign' : 'eBook';
-  let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=Bestseller&MaxResults=4&start=${page}&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=bestBookDisplay`;
   let bestBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=Bestseller&MaxResults=4&start=${page}&SearchTarget=${searchTarget}&output=js&Version=20131101&callback=bestBookDisplay`;
 
   // 베스트셀러 AJAX 요청
@@ -171,14 +167,15 @@ function menuBook(menu) {
 
 let count = 2
 // 편집자 추천 더보기 버튼
-  document.getElementById('read-more').addEventListener('click', function(){
-    let navActive = document.querySelector('.nav__menu__item.active').textContent;
-    let category = (navActive == "국내도서") ? "book" : (navActive == "외국도서") ? "Foreign" : "eBook"
+  // document.getElementById('read-more').addEventListener('click', function(){
+  //   let navActive = document.querySelector('.nav__menu__item.active').textContent;
+  //   let category = (navActive == "국내도서") ? "book" : (navActive == "외국도서") ? "Foreign" : "eBook"
   document.getElementById('read-more').addEventListener('click', function(){
     let navActive = document.querySelector('.nav__menu__item.active').textContent;
     let category = (navActive == "국내도서") ? "book" : (navActive == "외국도서") ? "Foreign" : "eBook"
 
     let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewSpecial&MaxResults=4&start=${count}&SearchTarget=${category}&output=js&Version=20131101&callback=mdBookDisplay`
+
       // 편집자 추천
       $.ajax({
         url: mdBookUrl,
@@ -193,26 +190,25 @@ let count = 2
       });
       count += 1
   })
-    let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewSpecial&MaxResults=4&start=${count}&SearchTarget=${category}&output=js&Version=20131101&callback=mdBookDisplay`
-      // 편집자 추천
-      $.ajax({
-        url: mdBookUrl,
-        jsonp: "mdBookDisplay",
-        dataType: "jsonp",
-        success: function(data) {
-          mdBookDisplay(data);
-        },
-        error: function(err) {
-          console.error(err);
-        }
-      });
-      count += 1
-  })
+    // let mdBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&QueryType=ItemNewSpecial&MaxResults=4&start=${count}&SearchTarget=${category}&output=js&Version=20131101&callback=mdBookDisplay`
+    //   // 편집자 추천
+    //   $.ajax({
+    //     url: mdBookUrl,
+    //     jsonp: "mdBookDisplay",
+    //     dataType: "jsonp",
+    //     success: function(data) {
+    //       mdBookDisplay(data);
+    //     },
+    //     error: function(err) {
+    //       console.error(err);
+    //     }
+    //   });
+    //   count += 1
+  //})
 
 
 
 // 최초 화면 렌더링
-function getBookData (){
 function getBookData (){
   // 신간
   let newBookUrl = `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${API_KEY}&Cover=Big&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&callback=newBookDisplay`
