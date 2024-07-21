@@ -1,6 +1,7 @@
-const DW_API_KEY = 'ttb02jw2356002';
+const DW_API_KEY = 'ttbj01022761248002';
 let bookInfo = [];
 let receivedISBN = '';
+let forKakaoLink = '';
 
 // URL에서 isbn 파라미터 추출
 const urlParams = new URLSearchParams(window.location.search);
@@ -52,6 +53,11 @@ function detailBookDisplay(success) {
     detailRender();
 }
 
+
+
+
+
+
 // 책 세부 정보를 렌더링하는 함수
 function detailRender() {
   const referrer = document.referrer;
@@ -63,11 +69,11 @@ function detailRender() {
       document.getElementById('detail-book-buy-btn-kakao').style.display = 'none';
       document.getElementById('detail-desc').style.display = 'none';
   }
-    if (bookInfo.length === 0) {
-      console.log(bookInfo.length);
-        $('#bookInfo').html('<p>책 정보를 로드할 수 없습니다.</p>');
-        return;
-    }
+  if (bookInfo.length === 0) {
+    console.log(bookInfo.length);
+      $('#bookInfo').html('<p>책 정보를 로드할 수 없습니다.</p>');
+      return;
+  }
 
     let detailBookImgHTML = bookInfo[0].cover;
     document.getElementById('detail-img').src = detailBookImgHTML;
@@ -99,8 +105,12 @@ function detailRender() {
     let detailBookDesc = bookInfo[0].description;
     document.getElementById('detail-book-desc').textContent = detailBookDesc;
 
-    let detailBookBuyBtnKaKao = `https://search.daum.net/search?w=bookpage&bookId=6368962&q=${detailBookTitle}`
-    document.getElementById('detail-book-buy-btn-kakao').setAttribute('herf', detailBookBuyBtnKaKao)
+    /* 버튼 */
+    // let detailBookBuyBtnKaKao = `https://search.daum.net/search?w=bookpage&bookId=${}&q=${detailBookTitle}`
+    // let detailBookBuyBtnKaKao = `https://search.daum.net/search?w=bookpage&q=${detailBookTitle}}`
+    // document.getElementById('detail-book-buy-btn-kakao').setAttribute('herf', detailBookBuyBtnKaKao);
+    $('#detail-book-buy-btn-kakao').attr('href', `https://search.daum.net/search?w=bookpage&bookId=6686180&tab=introduction&DA=LB2&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C%20%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94%20%EB%A1%9C%EB%B3%B4%EC%96%B4%EB%93%9C%EB%B0%94%EC%9D%B4%EC%A0%80%20-%20%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4%20%EC%B5%9C%EC%A0%81%ED%99%94%EC%97%90%EC%84%9C%20%EB%A7%88%EC%BC%93%ED%83%80%EC%9D%B4%EB%B0%8D%2C%20%ED%8C%A9%ED%84%B0%20%ED%88%AC%EC%9E%90%2C%20%EB%94%A5%EB%9F%AC%EB%8B%9D%EA%B9%8C%EC%A7%80`);
+
     let detailBookBuyBtnA = bookInfo[0].link;
     document.getElementById('detail-book-buy-btn-aladin').setAttribute('href', detailBookBuyBtnA);
 

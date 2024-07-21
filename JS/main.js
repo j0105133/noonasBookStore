@@ -1,4 +1,4 @@
-const API_KEY = `ttb02jw2356002`;
+const API_KEY = `ttbj01022761248002`;
 let mdBookList = [];
 let bestBookList = [];
 let newBookList = [];
@@ -14,6 +14,34 @@ window.goToDetail = function(isbn) { // 상세 페이지로 이동하는 함수
 
 // 메뉴별 화면 변경 함수
 window.onload = function() {
+  const referrer = document.referrer;
+  // 이전 페이지가 DVD.html인지 확인
+  if (referrer.includes('dvd.html')) {
+      // URL에서 쿼리 파라미터를 추출하는 함수
+      function getQueryParam(param) {
+        let params = new URLSearchParams(window.location.search);
+        return params.get(param);
+    }
+
+    // id 파라미터 값 가져오기
+    let idValue = getQueryParam('id');
+
+    if (idValue) {
+      $('.nav__menu__item').removeClass('active');
+      if(idValue == 'nav-dom'){
+          categoryBookRender($('#nav-item-1').text());
+          $('#nav-item-1').addClass('active');
+      } else if(idValue == 'nav-for'){
+          categoryBookRender($('#nav-item-2').text());
+          $('#nav-item-2').addClass('active');
+      } else if(idValue == 'nav-e'){
+          categoryBookRender($('#nav-item-3').text());
+          $('#nav-item-3').addClass('active');
+      }
+  }
+  }
+
+
   let menu = document.querySelectorAll('.nav__menu__item');
 
   menu.forEach(menuItem => {
