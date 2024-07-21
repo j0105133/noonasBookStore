@@ -9,6 +9,7 @@ searchBtn.addEventListener('click', function(){
 
 function search (){
   let inputValue = input.value;
+  console.log("IV",inputValue)
   $.ajax({
     method: "GET",
     url: "https://dapi.kakao.com/v3/search/book",
@@ -16,6 +17,7 @@ function search (){
     headers: { Authorization: `KakaoAK ${API_KEY}` }
   })
   .done(function(data) {
+    console.log("Done in")
     console.log(data);
     bookList = data.documents;
     console.log(bookList);

@@ -1,4 +1,4 @@
-const API_KEY_DVD = `ttbsueyesi2317002`
+const API_KEY_DVD = `ttbj01022761248002`
 let queryType = "";
 let dvdCallback = "";
 let searchTarget= ""
@@ -47,8 +47,9 @@ const bestDvdDisplay =(success)=>{
 
 const DVDRender =()=>{
     let dvdListHTML = ``;
+    // console.log("dvd list", allDvdList);
     dvdListHTML = allDvdList.map(dvd => `
-        <div class="dvd__item">
+        <div class="dvd__item" onclick="goToDetail2('${dvd.isbn13}')">
             <div class="dvd__img"><img class="bookImgSize" src=${dvd.cover} /></div>
             <dl class="dvd__text">
                 <dt>${dvd.title}</dt>
@@ -58,7 +59,7 @@ const DVDRender =()=>{
             </dl>
         </div>        
       `).join('');
-
+    // console.log("dvd isbn", allDvdList.isbn);
     document.getElementById('dvd__list').innerHTML = dvdListHTML;
 }
 const bestDvdRender =()=>{
@@ -66,7 +67,7 @@ const bestDvdRender =()=>{
     let itemsPerPage = 5;
     
     ebookListHTML = ebookList.slice(0, itemsPerPage).map(dvd => `
-        <div class="dvd__item">
+        <div class="dvd__item" onclick="goToDetail2('${dvd.isbn13}')">
             <div class="dvd__img"><img class="bookImgSize" src=${dvd.cover} /></div>
             <dl class="dvd__text">
                 <dt>${dvd.title}</dt>
