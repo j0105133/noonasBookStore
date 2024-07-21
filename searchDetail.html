@@ -72,8 +72,23 @@
     </style>
 </head>
 <body>
-    <!--header : common/header.html-->
-    <header class="header" id="header"></header>
+    <!--header : common/hearder.html-->
+    <header class="header" id="header"> 
+        <div class="header__event"></div>        
+        <div class="header__container wrap">            
+            <h1><a href="/">Noona<span>Book</span>Store</a></h1>
+            <!--search-->
+            <div class="search-form">
+                <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
+                <button id="customSearchBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
+                    </svg>
+                </button>
+            </div> 
+            <!--//search-->                   
+        </div>      
+    </header> 
     <!--//header-->
     <!--nav : common/nav.html-->
     <nav id="nav"></nav>
