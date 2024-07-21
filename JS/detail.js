@@ -143,6 +143,6 @@ function detailRender() {
             $('#customTextInput').val(''); // 입력 필드 비우기
         }
 
-// =======
-// }
-// >>>>>>> b53b817f6736a04e7bd90f1a53dd2483c53041c6
+=======
+}
+>>>>>>> b53b817f6736a04e7bd90f1a53dd2483c53041c6
