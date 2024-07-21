@@ -70,6 +70,15 @@ body{
 .header__event p{    
     font-size: 0.9rem;
     margin-top: 0.5rem;
+    background: rgb(161, 225, 223);    
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.header__event p{    
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
 }
 .header__container{
     display: flex;
@@ -114,6 +123,7 @@ h1 span{
     height: 52px;
     width: 15%; 
     cursor: pointer;
+    cursor: pointer;
 }
 .search__button::after{
     content: '\f002';
@@ -128,6 +138,7 @@ nav{
     background: var(--color1);
     background-image: var(--menuBg);    
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-family: 'GmarketSansMedium';
     font-family: 'GmarketSansMedium';
 }
 nav .nav__menu{    
@@ -162,6 +173,7 @@ nav .nav__menu div.active{
     width: 100%;
     height: 100%;
     padding: 50px;
+    padding: 50px;
     border: 1px solid #e5e5e5;
     overflow: hidden;
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
@@ -169,8 +181,10 @@ nav .nav__menu div.active{
 }
 .book__container .book_list--roll{
      
+     
 }
 .book__container .book__item{
+    width: 20%;   
     width: 20%;   
 }
 .book__container .book__img{
@@ -186,6 +200,9 @@ nav .nav__menu div.active{
     display: flex;
     font-family: var(--font_pretendard);    
     justify-content: space-evenly;    
+}
+.book__item{
+    cursor: pointer;
 }
 .book__item{
     cursor: pointer;
@@ -229,6 +246,7 @@ nav .nav__menu div.active{
     -webkit-line-clamp:1;
 }
 /*theme*/
+
 
 
 /*갤러리타입*/
@@ -292,6 +310,7 @@ nav .nav__menu div.active{
     height: 100%;    
     border-bottom: 1px solid #ddd;
     padding: 2rem 1rem;
+    display: table;    
     display: table;    
 }
 .book__theme--list .theme__list .theme__item .theme__img{
