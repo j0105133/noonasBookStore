@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="CSS/detail.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/product.css"> 
     <link rel="stylesheet" href="CSS/reset.css"> 
-    <link rel="stylesheet" href="CSS/search.css">
+    <link rel="stylesheet" href="CSS/search.css">    
     <link rel="stylesheet" href="CSS/style.css"> 
+    <link rel="stylesheet" href="CSS/media.css">
     <title>noonaBookStore</title> 
 </head>
   <body>
@@ -21,32 +23,28 @@
       <div class="header__container wrap">            
           <h1><a href="/">Noona<span>Book</span>Store</a></h1>
           <!--search-->
-          <div class="search-form">
-            <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
-            <button id="customSearchBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
-                </svg>
-            </button>
-          </div> 
-         <!--//search-->                   
+          <div class="search">
+            <input type="text" class="search__input" id="customTextInput" placeholder="검색어를 입력하세요">
+            <button id="customSearchBtn" class="search__button" title="검색"></button>
+        </div> 
+        <!--//search-->                  
       </div>      
     </header> 
     <!--//header-->
     <!--nav : common/nav.html-->
     <nav id="nav">
       <div class="nav__menu wrap">
-          <div class="nav__menu__item active">국내도서</div>        
-          <div class="nav__menu__item">외국도서</div>        
-          <div class="nav__menu__item">eBook</div>
-          <div><a href="dvd.html">DVD</a></div>
+          <div class="nav__menu__item active" id="nav-item-1">국내도서</div>        
+          <div class="nav__menu__item" id="nav-item-2">외국도서</div>        
+          <div class="nav__menu__item" id="nav-item-3">eBook</div>
+          <div class="nav__menu__item" id="dvd-nav-btn" >DVD</div>
       </div>
-    </nav>
+  </nav>
     <!--//nav--> 
     <!--container-->
     <section class="container product__container wrap">
-      <article class="book__detail mgT40">
-        <h2 id="detail-title">도서/DVD 상세 정보</h2>
+      <article class="book__detail">
+        <!--h2 id="detail-title">도서/DVD 상세 정보<h2-->
         <div id="detail-board">
           <div class="detail__wrap">
             <div class="detail__img">
@@ -62,6 +60,7 @@
               <!-- <p>출판일/출시일 <em id="detail-info-date"></em></p> -->
               <p>ISBN <em id="detail-info-isbn"></em></p>
             </div>
+            
           </div>
           <div class="detail__descr" id="detail-desc">
             <h3>줄거리</h3>

@@ -2,14 +2,18 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="CSS/detail.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="CSS/main.css">
-    <link rel="stylesheet" href="CSS/product.css">
-    <link rel="stylesheet" href="CSS/reset.css">
-    <link rel="stylesheet" href="CSS/search.css">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/product.css"> 
+    <link rel="stylesheet" href="CSS/reset.css"> 
+    <link rel="stylesheet" href="CSS/search.css">    
+    <link rel="stylesheet" href="CSS/style.css"> 
+    <link rel="stylesheet" href="CSS/media.css"> 
     <title>noonaBookStore</title>
     <style>
         /* search.html에 적용할 추가 스타일 */
@@ -21,38 +25,48 @@
 <body>
     <!--header : common/hearder.html-->
     <header class="header" id="header"> 
-      <div class="header__event"></div>        
+      <!--header__event-->
+      <div class="header__event">
+          리액트 스터디 2기 <span>같은 꿈을 꾸는 사람들을 모집합니다</span> 
+          <p>기간: 2024.08.11~2024.09.15</p>
+      </div>
+      <!--//header__event-->        
       <div class="header__container wrap">            
-          <h1><a href="/">Noona<span>Book</span>Store</a></h1>  
-          <!-- 검색 폼 추가 -->
-          <div id="customSearchForm">
-            <input type="text" id="customTextInput" placeholder="검색어를 입력하세요">
-            <!-- SVG 아이콘을 사용하는 검색 버튼 -->
-            <button id="customSearchBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.196.196l-3.85 3.85a1 1 0 0 0 1.415 1.415l3.85-3.85a1 1 0 0 0 .196-.196v-.001a6.5 6.5 0 0 0 1.398-1.397zm-5.982.066a5.5 5.5 0 1 1 7.78-7.78 5.5 5.5 0 0 1-7.78 7.78z"/>
-                </svg>
-            </button>
-          </div>
-          <!--//search-->              
+          <h1><a href="/">Noona<span>Book</span>Store</a></h1>
+          <!--search-->
+          <div class="search" id="customSearchForm">
+            <input type="text" class="search__input" id="customTextInput" placeholder="검색어를 입력하세요">
+            <button id="customSearchBtn" class="search__button" title="검색"></button>
+        </div> 
+        <!--//search-->            
       </div> 
     </header> 
     <!--//header-->
+    <!--mobile-->
+    <div class="mobile__menu">
+      <span class="mobile__button--open" onclick="openNav()">open</span>
+      <div class="nav__menu wrap">
+          <div class="nav__menu__item active" id="nav-item-1">국내도서</div>        
+          <div class="nav__menu__item" id="nav-item-2">외국도서</div>        
+          <div class="nav__menu__item" id="nav-item-3">eBook</div>
+          <div class="nav__menu__item" id="dvd-nav-btn" data-menu="dvd">DVD</div>
+      </div>
+    </div>
+    <!--//mobile-->
     <!--nav : common/nav.html-->
     <nav id="nav">
+      <span class="mobile__button--open" onclick="openNav()">open</span>
       <div class="nav__menu wrap">
-          <div class="nav__menu__item active">국내도서</div>        
-          <div class="nav__menu__item">외국도서</div>        
-          <div class="nav__menu__item">eBook</div>
-          <div><a href="dvd.html">DVD</a></div>
+          <div class="nav__menu__item active" id="nav-item-1">국내도서</div>        
+          <div class="nav__menu__item" id="nav-item-2">외국도서</div>        
+          <div class="nav__menu__item" id="nav-item-3">eBook</div>
+          <div class="nav__menu__item" id="dvd-nav-btn" data-menu="dvd">DVD</div>
       </div>
     </nav>
     <!--//nav--> 
     <!--container-->
     <section class="search__container wrap">
         <article class="book__theme mgT40">
-            <!-- 검색 폼 추가 -->
-            
             <div class="book__theme--list">
                 <h2 id="customSearchTitle"></h2>
                 <div id="customBookBoard"></div>
