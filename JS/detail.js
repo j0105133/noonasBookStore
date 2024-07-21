@@ -120,6 +120,7 @@ function detailRender() {
 
     let detailBookBuyBtnY = `https://www.yes24.com/Product/Search?domain=ALL&query=${detailTitleFind}`;
     document.getElementById('detail-book-buy-btn-yes24').setAttribute('href', detailBookBuyBtnY);
+
 }
 
         // 검색 버튼 클릭 이벤트
@@ -141,4 +142,3 @@ function detailRender() {
             window.location.href = newUrl;
             $('#customTextInput').val(''); // 입력 필드 비우기
         }
-
